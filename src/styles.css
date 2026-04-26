@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+@import 'primeicons/primeicons.css';
+
+/* Definimos el color cian como una variable para usarla fácilmente */
+:root {
+  --cyan-vibrante: #00ffff; /* O #0ff, es lo mismo */
+}
+:host {
+  /* ... (estilos anteriores) ... */
+  
+  /* Agregamos una luz cian muy suave de fondo para dar atmósfera */
+  background: 
+    radial-gradient(circle at -20% -20%, rgba(0, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 50%), /* Luz en esquina sup. izq. */
+    radial-gradient(circle at center, #1b1b3a 0%, #050505 100%);
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0%;
+}
+
+
+:host {
+    display: block;
+    min-height: 100vh;
+  background: 
+    radial-gradient(circle at -20% -20%, rgba(0, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 50%), /* Luz en esquina sup. izq. */
+    radial-gradient(circle at center, #1b1b3a 0%, #050505 100%);
+  background-attachment: fixed;
+    color: aliceblue;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+html,body {
+    margin: 0;
+    padding: 0;
+      background: 
+    radial-gradient(circle at -20% -20%, rgba(0, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 50%), /* Luz en esquina sup. izq. */
+    radial-gradient(circle at center, #1b1b3a 0%, #050505 100%);
+  background-attachment: fixed;
+    min-height: 100vh;
+
+
+}

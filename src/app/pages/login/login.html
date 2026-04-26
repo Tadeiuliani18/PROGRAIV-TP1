@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="page">
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <form>
+            <div class="user-box">
+                <input type="text" name="username" [(ngModel)]="username" autocomplete="username" required />
+                <label>Username</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" [(ngModel)]="password" autocomplete="current-password"
+                    required />
+                <label>Password</label>
+            </div>
+            <p class="login-error" *ngIf="error">{{ error }}</p>
+            <a href="#" routerLink="/home" (click)="login($event)">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+            </a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+
+<div class="home-container">
+    <section class="hero-section">
+        <h1>Explora tu Sala de Juegos</h1>
+    </section>
+
+    <section class="games-container">
+        <app-game-card [color]="'#C8FF00'" [nombre]="'Ahorcado'" [descripcion]="'Advina la palabra y salva el día'"
+            [imagen]="'/juego-del-ahorcado.png'" [ruta]="'/ahorcado'">
+        </app-game-card>
+
+        <app-game-card [color]="'#00FF9F'" [nombre]="'Mayor o Menor'" [descripcion]="'Mayor o menor y comotida día'"
+            [imagen]="'/cartas-juego-png.png'" [ruta]="'/mayor-menor'">
+        </app-game-card>
+
+        <app-game-card [color]="'#FF9500'" [nombre]="'Preguntados'" [descripcion]="'Advina la palabra y quiz'"
+            [imagen]="'/preguntados-juego.jpg'" [ruta]="'/preguntados'">
+        </app-game-card>
+
+        <app-game-card [color]="'#9D4EDD'" [nombre]="'Juego Propio'" [descripcion]="'Juego un puzzle'"
+            [imagen]="'/juego-propio.jpg'" [ruta]="'/juego-propio'">
+        </app-game-card>
+    </section>
+
+    <section class="footer-section">
+        <p>Tadeo Agustin Iuliani - 2026</p>
+    </section>
+</div>

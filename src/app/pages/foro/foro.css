@@ -1,0 +1,14 @@
+.foro-page {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.foro-page h1 {
+    margin-bottom: 1rem;
+}
+
+.foro-page p {
+    color: #444;
+}

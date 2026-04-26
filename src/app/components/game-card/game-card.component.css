@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.game-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Borde sutil por defecto */
+    border-radius: 24px;
+    padding: 24px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* --- AJUSTE DE PROPORCIONES --- */
+    width: 100px;
+    /* Ancho fijo o base */
+    height: 230px;
+    /* Alto similar al ancho para efecto cuadrado */
+    /* ------------------------------ */
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto Hover: Aquí es donde brilla el borde según el color del juego */
+.game-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.12);
+    /* El color del box-shadow se heredará dinámicamente si usas [style.border-color] */
+    box-shadow: 0 10px 30px -5px var(--card-color-glow);
+    border-color: var(--card-color) !important;
+}
+
+.card-left {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid;
+    /* Usará el [style.border-color] */
+    transition: all 0.3s ease;
+}
+
+/* Contenedor del icono */
+.card-icon {
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* El drop-shadow genera el resplandor exterior del color de la card */
+    filter: drop-shadow(0 0 8px var(--card-color-glow));
+}
+
+.card-icon img {
+    width: 60px; /* Ajustado para que quepa bien en la card cuadrada */
+    height: 60px;
+    object-fit: contain;
+
+    /* --- TRUCO DE COLORIZACIÓN --- */
+    /* Usamos la imagen como máscara para que solo se vea el fondo de color */
+    background-color: var(--card-color); 
+    -webkit-mask-image: var(--img-url);
+    mask-image: var(--img-url);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.card-right {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+h3 {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0;
+    font-weight: 700;
+}
+
+p {
+    color: #b0b0b0;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+/* Botón estilizado como el modelo */
+.play-btn {
+    align-self: flex-start;
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    margin-top: 5px;
+}
+
+.play-btn:hover {
+    background-color: var(--card-color);
+    color: #000 !important;
+    /* Texto oscuro cuando el botón se llena de color */
+    box-shadow: 0 0 20px var(--card-color-glow);
+}

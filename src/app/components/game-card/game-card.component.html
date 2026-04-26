@@ -1,0 +1,31 @@
+<div class="game-card" 
+     [style.border-color]="color" 
+     [style.--card-color]="color" 
+     [style.--card-color-glow]="color + '66'">
+    
+    <div class="card-left" [style.border-color]="color + '33'">
+        <div class="card-icon">
+            <img *ngIf="isImageUrl(imagen)" 
+                 [src]="imagen" 
+                 [alt]="nombre" 
+                 [style.--img-url]="'url(' + imagen + ')'" />
+            
+            <span *ngIf="!isImageUrl(imagen)" [style.color]="color">
+                {{ imagen }}
+            </span>
+        </div>
+    </div>
+
+    <div class="card-right">
+        <div>
+            <h3>{{ nombre }}</h3>
+            <p>{{ descripcion }}</p>
+        </div>
+        <button class="play-btn" 
+                [style.border-color]="color" 
+                [style.color]="color" 
+                (click)="jugar()">
+            ¡Jugar Ahora!
+        </button>
+    </div>
+</div>

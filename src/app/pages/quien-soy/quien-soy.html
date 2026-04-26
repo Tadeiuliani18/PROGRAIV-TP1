@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+
+  <h1 class="title">Quién soy</h1>
+
+  <!-- Card de GitHub -->
+  <div class="card">
+
+    @if (usuario) {
+
+      <img [src]="usuario.avatar_url" alt="Foto de perfil" class="avatar">
+
+      <h2>{{ usuario.name }}</h2>
+      <p class="username">@{{ usuario.login }}</p>
+    
+        <div class="stats-container">
+        <div class="stat-item">
+          <span class="stat-value">{{ usuario.public_repos }}</span>
+          <span class="stat-label">Repositorios</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">{{ usuario.followers }}</span>
+          <span class="stat-label">Seguidores</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">{{ usuario.following }}</span>
+          <span class="stat-label">Siguiendo</span>
+        </div>
+      </div>
+
+      <a [href]="usuario.html_url" target="_blank" class="btn">
+        Ver perfil en GitHub
+      </a>
+
+    }
+
+  </div>
+
+  <!-- Loader -->
+  @if (!usuario) {
+    <p class="loading">Cargando datos...</p>
+  }
+
+  <!-- Sobre mí -->
+  <div class="card sobre-mi">
+
+    <h2>Sobre mí</h2>
+
+    <p>
+      Buenas, soy <strong>Tadeo Agustín Iuliani</strong>, aunque todos me dicen <strong>Tade</strong>.
+      Soy hincha de <strong>Boca</strong> 💙💛 y me gusta mucho todo lo relacionado a la programación.
+    </p>
+
+    <p>
+      Mi lenguaje favorito es <strong>C#</strong>, porque me resulta claro y potente para trabajar,
+      sobre todo en backend.
+    </p>
+
+    <p>
+      En mi día a día hay alguien que no puede faltar: mi perra <strong>Brisa</strong> 🐶,
+      que siempre está acompañándome.
+    </p>
+
+    @if (usuario) {
+      <p>
+        Además, podés ver mi GitHub como <strong>{{ usuario.login }}</strong>, donde tengo mi foto de perfil
+        y varios proyectos que forman parte de mi aprendizaje como desarrollador.
+      </p>
+    }
+
+  </div>
+
+  <!-- Juego propio -->
+  <div class="card juego">
+
+    <h2>Mi juego propio</h2>
+
+    <p>
+      El juego que desarrollé es <strong>"Nombre de tu juego"</strong>.
+    </p>
+
+    <p>
+      Consiste en que el jugador debe (acá explicás la lógica).
+      Por ejemplo, tomar decisiones correctas en el menor tiempo posible para sumar puntos.
+    </p>
+
+    <p>
+      El objetivo es poner a prueba habilidades como la lógica, la rapidez o la memoria.
+    </p>
+
+    <p>
+      El juego finaliza cuando se alcanza cierta cantidad de errores o se completa el objetivo.
+    </p>
+
+  </div>
+
+</div>

@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+  color: aliceblue;
+  background-attachment: fixed;
+}
+
+.home-container {
+  padding: 20px;
+  /* Reducimos el padding superior */
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  /* Espacio controlado hacia los juegos */
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 38px;
+  /* Un poco más pequeño para ganar espacio vertical */
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+/* 3. Grid compacto */
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 2fr));
+  grid-auto-rows: 1fr;
+  gap: 80px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.games-container app-game-card {
+  display: block;
+  height: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  /* Esta combinación usa fuentes que ya vienen en los sistemas modernos 
+       y dan ese look redondeado y premium de la imagen */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  color: white;
+  text-align: center;
+  letter-spacing: -0.5px;
+  /* Para que se vea más compacta y pro */
+}
+
+/* 2. Título principal con brillo cian */
+.hero-section h1 {
+  /* ... (estilos anteriores) ... */
+
+  /* Sutil resplandor cian detrás de las letras */
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+/* 3. Títulos de las tarjetas de juegos al pasar el mouse (hover) */
+/* (Asumiendo que tus tarjetas tienen una clase 'card-title' y el contenedor principal 'card') */
+.card {
+  /* ... (estilos anteriores de Glassmorphism) ... */
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  /* Borde cian vibrante con brillo al hacer hover */
+  border-color: var(--cyan-vibrante);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+}
+
+.card:hover .card-title {
+  /* El título de la tarjeta también se ilumina en cian al pasar el mouse */
+  color: var(--cyan-vibrante);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* 4. Botones de "¡Jugar Ahora!" con el estilo de la imagen de login */
+/* (Asumiendo que tus botones tienen una clase 'btn-jugar') */
+.btn-jugar {
+  background-color: var(--cyan-vibrante);
+  color: #050505;
+  /* Texto oscuro para contrastar */
+  border: none;
+  border-radius: 10px;
+  /* Bordes redondeados como en tu imagen de login */
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+
+  /* El brillo intenso característico de tu imagen de login */
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+
+  transition: all 0.3s ease;
+}
+
+.btn-jugar:hover {
+  /* Efecto al pasar el mouse: el brillo se intensifica */
+  box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
+  transform: scale(1.05);
+}
