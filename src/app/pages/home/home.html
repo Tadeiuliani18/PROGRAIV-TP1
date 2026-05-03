@@ -1,15 +1,20 @@
 <app-navbar></app-navbar>
 <div class="auth-section">
 
-  <div *ngIf="!usuario">
+  @if (!usuario) {
+  <div> 
     <button routerLink="/login">Login</button>
     <button routerLink="/registro">Registro</button>
   </div>
+}
 
-  <div *ngIf="usuario">
+  @if (usuario) {
+  <div> 
     <p>Bienvenido {{ usuario.email }}</p>
     <button (click)="logout()">Cerrar sesión</button>
+
   </div>
+}
 
 </div>
 <div class="home-container">
