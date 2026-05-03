@@ -4,34 +4,43 @@ import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
 import { QuienSoy } from './pages/quien-soy/quien-soy';
 import { Foro } from './pages/foro/foro';
+import { AuthGuard } from './guards/auth-guard';
+import { NoAuthGuard } from './guards/no-auth-guard';
 
 export const routes: Routes = [
     {
         path: '',
         component: Home,
+
     },
     {
         path: 'home',
-        component: Home
+        component: Home,
     },
     {
         path: 'login',
-        component: Login
+        component: Login,
+        canActivate: [NoAuthGuard]
     },
     {
         path: 'registro',
-        component: Registro
+        component: Registro,
+        canActivate: [NoAuthGuard]
     },
     {
         path: 'foro',
-        component: Foro
+        component: Foro,
+        canActivate: [AuthGuard]
     },
     {
         path: 'quien-soy',
-        component: QuienSoy
+        component: QuienSoy,
+        canActivate: [AuthGuard]
     },
     {
         path: '**',
         redirectTo: ''
     }
 ];
+
+

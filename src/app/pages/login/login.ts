@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { AuthService } from '../../services/auth';
 
 @Component({
   standalone: true,
@@ -12,35 +13,52 @@ import { NavbarComponent } from "../../components/navbar/navbar.component";
   styleUrl: './login.css',
 })
 export class Login {
-  username = '';
+  email = '';
   password = '';
   error = '';
 
-  login(event: Event): void {
+  constructor(private router: Router, private authService: AuthService) {}
+
+  async login(event: Event): Promise<void> {
+    event.preventDefault(); // SIEMPRE prevenimos submit
+
     this.error = '';
 
-    if (!this.username.trim() || !this.password.trim()) {
-      event.preventDefault();
-      this.error = 'Completa usuario y contraseña.';
-      console.log('Login fallido: datos incompletos');
+    if (!this.email.trim() || !this.password.trim()) {
+      this.error = 'Completa email y contraseña.';
       return;
     }
 
-    console.log('Simulando conexión a BD para usuario:', this.username);
+    try {
+      await this.authService.login(this.email, this.password);
 
-    if (!this.authenticate(this.username, this.password)) {
-      event.preventDefault();
-      this.error = 'Usuario o contraseña incorrectos.';
-      console.log('Login fallido: credenciales inválidas');
-      return;
+      console.log('Login exitoso:', this.email);
+
+      this.router.navigate(['/home']);
+
+    } catch (error: any) {
+      console.error('Error login:', error.message);
+      this.error = error.message;
     }
-
-    console.log('Login exitoso:', this.username, '- redirigiendo a Home');
   }
 
-  private authenticate(username: string, password: string): boolean {
-    console.log('Consulta ficticia a la DB:', { username, password });
-    return username === 'admin' && password === '1234';
+
+   // 🔥 LOGIN RÁPIDO (te suma puntos en el TP)
+  async loginRapido(userIndex: number) {
+    const users = [
+      { email: 'test1@mail.com', password: '123456' },
+      { email: 'test2@mail.com', password: '123456' },
+      { email: 'test3@mail.com', password: '123456' }
+    ];
+
+    const user = users[userIndex];
+
+    try {
+      await this.authService.login(user.email, user.password);
+      this.router.navigate(['/home']);
+    } catch (error: any) {
+      this.error = error.message;
+    }
   }
 }
 

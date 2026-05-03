@@ -1,42 +1,69 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-registro',
-  imports: [NavbarComponent, CommonModule, FormsModule, RouterModule],
+  standalone: true,
+  imports: [NavbarComponent, CommonModule, FormsModule],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
 export class Registro {
-  username = '';
+
+  nombre = '';
+  apellido = '';
+  edad: number | null = null;
   email = '';
   password = '';
   confirmPassword = '';
   error = '';
 
-  register(event: Event): void {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  async register(event: Event): Promise<void> {
+    event.preventDefault();
     this.error = '';
 
-    if (!this.username.trim() || !this.email.trim() || !this.password.trim() || !this.confirmPassword.trim()) {
-      event.preventDefault();
+    // VALIDACIONES
+    if (!this.nombre || !this.apellido || !this.edad || !this.email || !this.password || !this.confirmPassword) {
       this.error = 'Completa todos los campos.';
-      console.log('Registro fallido: datos incompletos');
       return;
     }
 
     if (this.password !== this.confirmPassword) {
-      event.preventDefault();
       this.error = 'Las contraseñas no coinciden.';
-      console.log('Registro fallido: contraseñas no coinciden');
       return;
     }
 
-    console.log('Simulando registro para usuario:', this.username, this.email);
+    try {
+      // REGISTRO EN SUPABASE
+      await this.authService.register(
+        this.email,
+        this.password,
+        {
+          nombre: this.nombre,
+          apellido: this.apellido,
+          edad: this.edad
+        }
+      );
 
-    // Simular registro exitoso
-    console.log('Registro exitoso:', this.username, '- redirigiendo a Home');
+      // LOGIN AUTOMÁTICO
+      await this.authService.login(this.email, this.password);
+
+      console.log('Registro exitoso');
+
+      this.router.navigate(['/home']);
+
+    } catch (error: any) {
+      console.error('Error registro:', error.message);
+      this.error = error.message;
+    }
   }
 }

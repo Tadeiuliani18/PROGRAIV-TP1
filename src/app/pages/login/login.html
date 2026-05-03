@@ -1,26 +1,55 @@
 <app-navbar></app-navbar>
-<div class="page">
 
-    <div class="login-box">
-        <h2>Login</h2>
-        <form>
-            <div class="user-box">
-                <input type="text" name="username" [(ngModel)]="username" autocomplete="username" required />
-                <label>Username</label>
-            </div>
-            <div class="user-box">
-                <input type="password" name="password" [(ngModel)]="password" autocomplete="current-password"
-                    required />
-                <label>Password</label>
-            </div>
-            <p class="login-error" *ngIf="error">{{ error }}</p>
-            <a href="#" routerLink="/home" (click)="login($event)">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Submit
-            </a>
-        </form>
+<div class="page">
+  <div class="login-box">
+    <h2>Login</h2>
+
+    <!-- FORMULARIO -->
+    <form (ngSubmit)="login($event)">
+
+      <div class="user-box">
+        <input 
+          type="email" 
+          name="email" 
+          [(ngModel)]="email" 
+          autocomplete="email" 
+          #emailInput="ngModel"
+          required 
+        />
+        <div *ngIf="emailInput.invalid && emailInput.touched">
+            Email requerido
+        </div>
+        <label>Email</label>
+      </div>
+
+      <div class="user-box">
+        <input 
+          type="password" 
+          name="password" 
+          [(ngModel)]="password" 
+          autocomplete="current-password"
+          required 
+        />
+        <label>Contraseña</label>
+      </div>
+
+      <!-- ERROR -->
+      <p class="login-error" *ngIf="error">{{ error }}</p>
+
+      <!-- BOTÓN LOGIN -->
+      <button type="submit" class="login-btn">
+        Ingresar
+      </button>
+
+    </form>
+
+    <!-- LOGIN RÁPIDO (afuera del form) -->
+    <div class="quick-login">
+      <p>Acceso rápido:</p>
+      <button type="button" (click)="loginRapido(0)">Usuario 1</button>
+      <button type="button" (click)="loginRapido(1)">Usuario 2</button>
+      <button type="button" (click)="loginRapido(2)">Usuario 3</button>
     </div>
+
+  </div>
 </div>

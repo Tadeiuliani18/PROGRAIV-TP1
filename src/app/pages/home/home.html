@@ -1,5 +1,17 @@
 <app-navbar></app-navbar>
+<div class="auth-section">
 
+  <div *ngIf="!usuario">
+    <button routerLink="/login">Login</button>
+    <button routerLink="/registro">Registro</button>
+  </div>
+
+  <div *ngIf="usuario">
+    <p>Bienvenido {{ usuario.email }}</p>
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+
+</div>
 <div class="home-container">
     <section class="hero-section">
         <h1>Explora tu Sala de Juegos</h1>
@@ -11,7 +23,7 @@
         </app-game-card>
 
         <app-game-card [color]="'#00FF9F'" [nombre]="'Mayor o Menor'" [descripcion]="'Mayor o menor y comotida día'"
-            [imagen]="'/cartas-juego-png.png'" [ruta]="'/mayor-menor'">
+            [imagen]="'cartas-juego2.png'" [ruta]="'/mayor-menor'">
         </app-game-card>
 
         <app-game-card [color]="'#FF9500'" [nombre]="'Preguntados'" [descripcion]="'Advina la palabra y quiz'"
@@ -19,7 +31,7 @@
         </app-game-card>
 
         <app-game-card [color]="'#9D4EDD'" [nombre]="'Juego Propio'" [descripcion]="'Juego un puzzle'"
-            [imagen]="'/juego-propio.jpg'" [ruta]="'/juego-propio'">
+            [imagen]="'🚀'" [ruta]="'/juego-propio'">
         </app-game-card>
     </section>
 
