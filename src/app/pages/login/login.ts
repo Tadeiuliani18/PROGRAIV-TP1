@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { AuthService } from '../../services/auth';
+import { Subscription } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   standalone: true,
@@ -12,16 +14,26 @@ import { AuthService } from '../../services/auth';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class Login implements OnInit, OnDestroy {
   email = '';
   password = '';
   error = '';
+  usuario: any = null;
+  private sub!: Subscription;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
+
+  ngOnInit() {
+    this.sub = this.authService.user$.subscribe(user => this.usuario = user);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   async login(event: Event): Promise<void> {
     event.preventDefault(); // SIEMPRE prevenimos submit
-
+    console.log('Intentando login con:', this.email, this.password);
     this.error = '';
 
     if (!this.email.trim() || !this.password.trim()) {
@@ -33,17 +45,23 @@ export class Login {
       await this.authService.login(this.email, this.password);
 
       console.log('Login exitoso:', this.email);
-
+      this.error = ''; // Limpiar errores previos
       this.router.navigate(['/home']);
 
     } catch (error: any) {
       console.error('Error login:', error.message);
-      this.error = error.message;
+      // Mostrar mensaje de error más amigable
+      if (error.message.includes('Invalid login credentials')) {
+        this.error = 'Email o contraseña incorrectos.';
+      } else if (error.message.includes('Email not confirmed')) {
+        this.error = 'Por favor confirma tu email antes de login.';
+      } else {
+        this.error = error.message || 'Error al iniciar sesión.';
+      }
     }
   }
 
 
-   // 🔥 LOGIN RÁPIDO (te suma puntos en el TP)
   async loginRapido(userIndex: number) {
     const users = [
       { email: 'test1@mail.com', password: '123456' },
@@ -55,10 +73,15 @@ export class Login {
 
     try {
       await this.authService.login(user.email, user.password);
+      this.error = '';
       this.router.navigate(['/home']);
     } catch (error: any) {
-      this.error = error.message;
+      console.error('Error en login rápido:', error.message);
+      if (error.message.includes('Invalid login credentials')) {
+        this.error = 'Credenciales incorrectas para este usuario.';
+      } else {
+        this.error = error.message || 'Error al iniciar sesión.';
+      }
     }
   }
 }
-

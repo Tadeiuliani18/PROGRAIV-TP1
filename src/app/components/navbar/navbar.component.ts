@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,14 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [MenubarModule, RouterModule]
 })
-export class NavbarComponent  {
+export class NavbarComponent {
 
+  @Input() usuario: any;
+
+  constructor(private authService: AuthService) { }
+
+  async logout() {
+    await this.authService.logout();
+  }
 
 }

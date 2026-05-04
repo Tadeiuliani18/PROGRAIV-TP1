@@ -7,10 +7,21 @@
 
     <ul class="nav-links">
       <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      @if (!usuario) {
       <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
       <li><a routerLink="/registro" routerLinkActive="active">Registro</a></li>
+      }
+      @if (usuario) {
       <li><a routerLink="/foro" routerLinkActive="active">Foro</a></li>
       <li><a routerLink="/quien-soy" routerLinkActive="active">Quién Soy</a></li>
+      }
     </ul>
+
+    @if (usuario) {
+    <div class="user-info">
+      Bienvenido, {{ usuario?.email }}
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+    }
   </div>
 </nav>

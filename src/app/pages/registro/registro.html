@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [usuario]="usuario"></app-navbar>
 
 <div class="page">
   <div class="login-box">
@@ -36,9 +36,14 @@
         <label>Confirmar Contraseña</label>
       </div>
 
-      <p class="login-error" *ngIf="error">{{ error }}</p>
-
-      <button type="submit" class="login-btn">
+      @if (error) {
+      <p class="login-error">{{ error }}</p>
+      }
+      <button type="submit" class="submit-button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
         Registrarse
       </button>
 

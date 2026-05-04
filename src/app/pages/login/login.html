@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [usuario]="usuario"></app-navbar>
 
 <div class="page">
   <div class="login-box">
@@ -8,36 +8,31 @@
     <form (ngSubmit)="login($event)">
 
       <div class="user-box">
-        <input 
-          type="email" 
-          name="email" 
-          [(ngModel)]="email" 
-          autocomplete="email" 
-          #emailInput="ngModel"
-          required 
-        />
-        <div *ngIf="emailInput.invalid && emailInput.touched">
-            Email requerido
+        <input type="email" name="email" [(ngModel)]="email" autocomplete="current-email" #emailInput="ngModel"
+          required />
+        @if (emailInput.invalid && emailInput.touched) {
+        <div class="login-error">
+          Email requerido
         </div>
+        }
         <label>Email</label>
       </div>
 
       <div class="user-box">
-        <input 
-          type="password" 
-          name="password" 
-          [(ngModel)]="password" 
-          autocomplete="current-password"
-          required 
-        />
+        <input type="password" name="password" [(ngModel)]="password" autocomplete="current-password" required />
         <label>Contraseña</label>
       </div>
 
-      <!-- ERROR -->
-      <p class="login-error" *ngIf="error">{{ error }}</p>
+      <!-- ERROR DE LOGIN -->
+      @if (error) {
+      <p class="login-error">{{ error }}</p>
+      }
 
-      <!-- BOTÓN LOGIN -->
-      <button type="submit" class="login-btn">
+      <button type="submit" class="submit-button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
         Ingresar
       </button>
 

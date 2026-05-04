@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GameCardComponent } from '../../components/game-card/game-card.component';
 import { AuthService } from '../../services/auth';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,19 +11,22 @@ import { AuthService } from '../../services/auth';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home { 
+export class Home implements OnInit, OnDestroy {
 
   usuario: any = null;
+  private sub!: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  async ngOnInit() {
-    this.usuario = await this.authService.getUser();
+  ngOnInit() {
+    this.sub = this.authService.user$.subscribe(user => {
+      this.usuario = user;
+      console.log('Usuario actual:', this.usuario);
+    });
   }
 
-  async logout() {
-    await this.authService.logout();
-    this.usuario = null;
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
 

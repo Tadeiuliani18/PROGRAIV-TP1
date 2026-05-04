@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
 /* Aplicamos la fuente a todo el componente */
 .navbar {
   font-family: 'Poppins', sans-serif;
-  background: #0d0d12; /* Un tono más oscuro para resaltar el celeste */
+  background: #0d0d12;
+  /* Un tono más oscuro para resaltar el celeste */
   padding: 0.8rem 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -21,7 +23,8 @@
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 12px; /* Espacio entre imagen y texto */
+  gap: 12px;
+  /* Espacio entre imagen y texto */
   color: rgb(1, 224, 224);
   font-weight: 700;
   font-size: 1.4rem;
@@ -29,10 +32,12 @@
 }
 
 .logo-img {
-  width: 45px;  /* Ajusta el tamaño a tu gusto */
+  width: 45px;
+  /* Ajusta el tamaño a tu gusto */
   height: 45px;
   object-fit: contain;
-  filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.5)); /* Brillo sutil a la imagen */
+  filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.5));
+  /* Brillo sutil a la imagen */
 }
 
 .nav-links {
@@ -57,5 +62,34 @@
   background: rgba(0, 242, 255, 0.08);
   box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
   text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
-  transform: translateY(-2px); /* Pequeño salto hacia arriba */
+  transform: translateY(-2px);
+  /* Pequeño salto hacia arriba */
+}
+
+.user-info {
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  background: rgba(0, 242, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 242, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-btn {
+  background: rgba(255, 100, 100, 0.8);
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 100, 100, 1);
 }

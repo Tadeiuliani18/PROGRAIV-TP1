@@ -1,22 +1,5 @@
-<app-navbar></app-navbar>
-<div class="auth-section">
+<app-navbar [usuario]="usuario"></app-navbar>
 
-  @if (!usuario) {
-  <div> 
-    <button routerLink="/login">Login</button>
-    <button routerLink="/registro">Registro</button>
-  </div>
-}
-
-  @if (usuario) {
-  <div> 
-    <p>Bienvenido {{ usuario.email }}</p>
-    <button (click)="logout()">Cerrar sesión</button>
-
-  </div>
-}
-
-</div>
 <div class="home-container">
     <section class="hero-section">
         <h1>Explora tu Sala de Juegos</h1>
@@ -35,10 +18,11 @@
             [imagen]="'/preguntados-juego.jpg'" [ruta]="'/preguntados'">
         </app-game-card>
 
-        <app-game-card [color]="'#9D4EDD'" [nombre]="'Juego Propio'" [descripcion]="'Juego un puzzle'"
-            [imagen]="'🚀'" [ruta]="'/juego-propio'">
+        <app-game-card [color]="'#9D4EDD'" [nombre]="'Juego Propio'" [descripcion]="'Juego un puzzle'" [imagen]="'🚀'"
+            [ruta]="'/juego-propio'">
         </app-game-card>
     </section>
+    
 
     <section class="footer-section">
         <p>Tadeo Agustin Iuliani - 2026</p>
