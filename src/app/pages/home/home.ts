@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GameCardComponent } from '../../components/game-card/game-card.component';
 import { AuthService } from '../../services/auth';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent, GameCardComponent],
+  imports: [GameCardComponent],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -16,7 +15,10 @@ export class Home implements OnInit, OnDestroy {
   usuario: any = null;
   private sub!: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.sub = this.authService.user$.subscribe(user => {
@@ -27,6 +29,11 @@ export class Home implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  async logout(): Promise<void> {
+    await this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
 

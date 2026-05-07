@@ -2,14 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { AuthService } from '../../services/auth';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })

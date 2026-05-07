@@ -38,6 +38,20 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: 'games',
+        loadChildren: () => import('./games/games.module').then(m => m.GamesModule)
+    },
+    {
+        path: 'mayor-menor',
+        redirectTo: '/games/mayor-menor',
+        pathMatch: 'full'
+    },
+    {
+        path: 'ahorcado',
+        redirectTo: '/games/ahorcado',
+        pathMatch: 'full'
+    },
+    {
         path: '**',
         redirectTo: ''
     }

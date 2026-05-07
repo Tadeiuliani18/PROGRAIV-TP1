@@ -1,16 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { Subscription } from 'rxjs';
-import { log } from 'console';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

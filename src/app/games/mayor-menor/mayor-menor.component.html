@@ -1,0 +1,50 @@
+<div class="mayor-menor-container">
+
+    <div class="game-header">
+        <button class="neon-btn" (click)="endGame()" [disabled]="gameOver()">Terminar Partida</button>
+
+        <div class="info-box"><span>Aciertos</span><strong>{{ score() }}</strong></div>
+        <div class="info-box"><span>Intentos</span><strong>{{ attempts() }}</strong></div>
+        <div class="info-box"><span>Tiempo</span><strong>{{ tiempoFormateado }}</strong></div>
+
+        <button class="neon-btn" (click)="salirHome()">Volver al menú</button>
+
+    </div>
+
+    <div class="game-main">
+        
+        <button class="side-button mayor" (click)="guess(true)" 
+                [disabled]="loading() || gameOver() || !currentCard()">
+            MAYOR
+        </button>
+
+        <div class="card-display">
+            <div class="card-wrapper" *ngIf="currentCard(); else loadingCardContent">
+                <img [src]="currentCard()!.image" [alt]="currentCardLabel" />
+                <p class="card-name">{{ currentCardLabel }}</p>
+            </div>
+            <ng-template #loadingCardContent>
+                <div class="card-wrapper placeholder">
+                    <p>Cargando carta...</p>
+                </div>
+            </ng-template>
+            
+            <div class="feedback-message" *ngIf="message()">{{ message() }}</div>
+        </div>
+
+        <button class="side-button menor" (click)="guess(false)" 
+                [disabled]="loading() || gameOver() || !currentCard()">
+            MENOR
+        </button>
+    </div>
+
+    <div class="overlay" *ngIf="gameOver()">
+        <div class="terminal-box" [class.danger]="score() < 5"> <h2 class="terminal-title">PARTIDA TERMINADA</h2>
+            <p class="final-score">Aciertos: {{ score() }} de {{ attempts() }}</p>
+            <p>Tiempo final: {{ tiempoFormateado }}</p>
+            <button class="neon-btn" (click)="startGame()">Jugar otra vez</button>
+            <button class="neon-btn danger" (click)="salirHome()">Salir</button>
+        </div>
+    </div>
+
+</div>

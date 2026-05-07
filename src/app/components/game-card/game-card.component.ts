@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-game-card',
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     templateUrl: './game-card.component.html',
     styleUrl: './game-card.component.css',
 })
@@ -22,6 +22,7 @@ export class GameCardComponent {
     }
 
     jugar() {
-        this.router.navigate([this.ruta]);
+        console.log('Navegando a:', this.ruta);
+        this.router.navigateByUrl(this.ruta);
     }
 }

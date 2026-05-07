@@ -1,0 +1,551 @@
+/* Contenedor Principal */
+.ahorcado-page {
+    background-color: #0b0e14;
+    /* Fondo oscuro como tu Home */
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Título y Header */
+.ahorcado-header h2 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    color: #00f3ff;
+    /* Cian Neón */
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+    text-align: center;
+}
+
+.ahorcado-status {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+}
+
+/* El Tablero y el Dibujo */
+.ahorcado-board {
+    background: #151921;
+    /* Un gris azulado muy oscuro */
+    border: 2px solid #39ff14;
+    /* Borde neón verde */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.hangman-svg {
+    height: 250px;
+    color: #00f3ff;
+    /* El color que tomará el "currentColor" */
+    filter: drop-shadow(0 0 5px #00f3ff);
+}
+
+.hangman-draw {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hangman-graphic {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.timer-display {
+    font-size: 1.3rem;
+    text-align: center;
+    color: #7bf6ff;
+    margin: 0 0 10px;
+}
+
+/* Grilla de letras (Teclado) */
+.alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.alphabet-grid button {
+    background: #1c222d;
+    border: 1px solid #333;
+    color: white;
+    padding: 15px 5px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.alphabet-grid button:hover:not([disabled]) {
+    background: #2a3241;
+    border-color: #00f3ff;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Estados de los botones */
+.alphabet-grid button.selected {
+    background: rgba(0, 243, 255, 0.2);
+    border-color: #00f3ff;
+    color: #00f3ff;
+}
+
+.alphabet-grid button.wrong {
+    background: rgba(255, 49, 49, 0.2);
+    border-color: #ff3131;
+    color: #ff3131;
+}
+
+.alphabet-grid button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Panel de Resultados */
+.result-panel {
+    margin-top: 30px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.result-panel p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.restart-btn {
+    background: linear-gradient(45deg, #7b2ff7, #2d00f7);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(123, 47, 247, 0.4);
+}
+
+.restart-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(123, 47, 247, 0.6);
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    background: #2b2f3e;
+    color: white;
+    border: 1px solid #555;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #3f4b62;
+    border-color: #00f3ff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.word-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.word-display {
+    min-height: 50px;
+}
+
+.word-display {
+    display: flex;
+    gap: 15px;
+    /* Espacio entre letras */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.letter-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 50px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    /* La rayita inferior estilo neón */
+    border-bottom: 4px solid #00f3ff;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+/* Animación cuando aparece la letra */
+.letter-slot:not(:empty) {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Capa oscura de fondo */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Caja del Modal */
+.modal-content {
+    background: #151921;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    border: 2px solid #333;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos dinámicos según gane o pierda */
+.modal-win {
+    border-color: #39ff14;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+}
+
+.modal-lose {
+    border-color: #ff3131;
+    box-shadow: 0 0 20px rgba(255, 49, 49, 0.2);
+}
+
+.status-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.modal-win h2 {
+    color: #39ff14;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.modal-lose h2 {
+    color: #ff3131;
+    text-shadow: 0 0 10px rgba(255, 49, 49, 0.5);
+}
+
+.modal-body {
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.word-reveal {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.final-word {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+/* Botón Principal */
+.btn-primary {
+    background: #7b2ff7;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(123, 47, 247, 0.4);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(123, 47, 247, 0.6);
+    background: #8e44ff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* 1. Fondo Oscuro Detrás del Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    /* Oscurece el fondo */
+    backdrop-filter: blur(8px);
+    /* Efecto borroso pro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 2. Contenedor del Modal */
+.modal-content {
+    background: #151921;
+    /* Fondo oscuro sólido */
+    border-radius: 24px;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    border: 2px solid #333;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* 3. Variaciones Neón (Ganaste / Perdiste) */
+.modal-win {
+    border-color: #39ff14;
+    /* Verde Neón */
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.2);
+}
+
+.modal-lose {
+    border-color: #ff3131;
+    /* Rojo Neón */
+    box-shadow: 0 0 25px rgba(255, 49, 49, 0.2);
+}
+
+/* 4. Header y Iconos */
+.status-icon {
+    font-size: 4.5rem;
+    display: block;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.modal-header h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.modal-win h2 {
+    color: #39ff14;
+    text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+}
+
+.modal-lose h2 {
+    color: #ff3131;
+    text-shadow: 0 0 15px rgba(255, 49, 49, 0.5);
+}
+
+/* 5. El mensaje y la palabra revelada */
+.modal-message {
+    color: #a0a0a0;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.word-reveal {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.word-reveal .label {
+    font-size: 0.8rem;
+    color: #666;
+    display: block;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+}
+
+.final-word {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+    /* Estilo terminal */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 6. Botón Principal (UX Mejorada) */
+.btn-primary {
+    background: linear-gradient(45deg, #7b2ff7, #2d00f7);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(45, 0, 247, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(123, 47, 247, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.stat-value.highlight {
+    color: #00f3ff; /* Cian neón para el puntaje */
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #888;
+    border: 1px solid #444;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    border-color: #777;
+    background: rgba(255, 255, 255, 0.05);
+}
