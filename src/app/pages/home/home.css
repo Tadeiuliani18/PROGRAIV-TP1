@@ -52,8 +52,6 @@
 }
 
 h1 {
-  /* Esta combinación usa fuentes que ya vienen en los sistemas modernos 
-       y dan ese look redondeado y premium de la imagen */
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 800;
   font-size: 42px;
@@ -114,4 +112,47 @@ h1 {
   /* Efecto al pasar el mouse: el brillo se intensifica */
   box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
   transform: scale(1.05);
+}
+
+.auth-error-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    
+    /* Fondo oscuro semi-transparente para que se vea el blur de atrás */
+    background: rgba(20, 10, 10, 0.9); 
+    color: #ff3131; /* Rojo neón */
+    
+    padding: 12px 25px;
+    border-radius: 4px; /* Bordes menos redondeados para el look tech */
+    
+    /* Borde neón */
+    border: 1px solid #ff3131;
+    
+    /* El "Glow" característico de tu página */
+    box-shadow: 0 0 10px rgba(255, 49, 49, 0.4), 
+                inset 0 0 10px rgba(255, 49, 49, 0.2);
+    
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-transform: uppercase; /* Le da un toque más de "Alerta de Sistema" */
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+
+    /* Animación de entrada con un leve rebote */
+    animation: neonDrop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    backdrop-filter: blur(5px); /* Desenfoca lo que haya detrás */
+}
+
+@keyframes neonDrop {
+    from {
+        opacity: 0;
+        top: -50px;
+    }
+    to {
+        opacity: 1;
+        top: 20px;
+    }
 }

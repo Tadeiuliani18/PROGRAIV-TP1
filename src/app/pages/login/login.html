@@ -6,7 +6,7 @@
     <form (ngSubmit)="login($event)">
 
       <div class="user-box">
-        <input type="email" name="email" [(ngModel)]="email" autocomplete="current-email" #emailInput="ngModel"
+        <input type="email" placeholder=" " name="email" [(ngModel)]="email" autocomplete="current-email" #emailInput="ngModel"
           required />
         @if (emailInput.invalid && emailInput.touched) {
         <div class="login-error">
@@ -16,10 +16,31 @@
         <label>Email</label>
       </div>
 
-      <div class="user-box">
-        <input type="password" name="password" [(ngModel)]="password" autocomplete="current-password" required />
+
+      <div class="user-box password-box">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          required
+          placeholder=" "
+        />
+
         <label>Contraseña</label>
+
+        @if (password) {
+          <button
+            type="button"
+            class="eye-button"
+            (click)="showPassword = !showPassword"
+          >
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        }
+
       </div>
+
+
 
       <!-- ERROR DE LOGIN -->
       @if (error) {

@@ -18,6 +18,8 @@ export class Login implements OnInit, OnDestroy {
   error = '';
   usuario: any = null;
   private sub!: Subscription;
+  showPassword = false;
+  showConfirmPassword = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -62,9 +64,9 @@ export class Login implements OnInit, OnDestroy {
 
   async loginRapido(userIndex: number) {
     const users = [
-      { email: 'test1@mail.com', password: '123456' },
-      { email: 'test2@mail.com', password: '123456' },
-      { email: 'test3@mail.com', password: '123456' }
+      { email: 'pablo@hotmail.com.ar', password: '1234567' },
+      { email: 'tadeiuliani3@gmail.com', password: 'tadefacu2' },
+      { email: 'facuiuliani@gmail.com', password: 'peep1232' }
     ];
 
     const user = users[userIndex];

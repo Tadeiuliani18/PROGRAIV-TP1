@@ -177,3 +177,20 @@
   box-sizing: border-box;
   text-align: center;
 }
+
+.avatar-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.username-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.perfil-url-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

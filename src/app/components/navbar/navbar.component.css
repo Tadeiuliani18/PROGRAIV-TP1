@@ -32,12 +32,10 @@
 }
 
 .logo-img {
-  width: 45px;
-  /* Ajusta el tamaño a tu gusto */
-  height: 45px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.5));
-  /* Brillo sutil a la imagen */
 }
 
 .nav-links {

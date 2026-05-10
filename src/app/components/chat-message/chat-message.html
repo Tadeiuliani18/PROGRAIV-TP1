@@ -1,0 +1,9 @@
+<div class="message-wrapper" [class.own-message]="esPropio">
+  <div class="message-bubble">
+    <div class="message-info">
+      <span class="user-name" [class.other-user]="!esPropio">{{ nombreUsuario }}</span>
+      <span class="message-time">{{ fecha | date:'HH:mm' }}</span>
+    </div>
+    <p class="message-text">{{ texto }}</p>
+  </div>
+</div>

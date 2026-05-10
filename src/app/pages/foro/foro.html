@@ -1,5 +1,44 @@
-
 <main class="foro-page">
-    <h1>Foro</h1>
-    <p>Aquí va el espacio del foro. Esta página está creada para el ruteo.</p>
+  <h1 class="titulo">Sala de Chat</h1>
+
+  <div class="chat-container">
+    
+    <div class="chat-window">
+      @if (mensajes().length > 0) {
+        
+        @for (msj of mensajes(); track msj.id) {
+          <app-chat-message 
+            [nombreUsuario]="msj.usuario_nombre"
+            [texto]="msj.contenido"
+            [fecha]="msj.created_at"
+            [esPropio]="msj.usuario_id === usuario()?.id">
+          </app-chat-message>
+        }
+
+      } @else if (huboErrorAlCargar()) { <div class="error-placeholder">
+          <div class="error-icon">☁️📴</div>
+          <div class="error-text">
+            Ocurrió un problema al cargar los mensajes.<br>
+            Intenta recargar la página.
+          </div>
+        </div>
+
+      } @else {
+        <div class="loading-placeholder">Cargando...</div>
+      }
+    </div>
+
+    <div class="chat-input-area" [class.input-error]="errorEnvio()">
+      <input 
+        type="text" 
+        [(ngModel)]="nuevoMensaje" 
+        [placeholder]="errorEnvio() ? 'Error al enviar, intenta de nuevo...' : 'Escribe un mensaje neon...'"
+        (keyup.enter)="enviar()"
+        [class.error-text]="errorEnvio()">
+      
+      <button class="send-btn" (click)="enviar()">
+        <span>@if(errorEnvio()){ ⚠️ } @else { Enviar }</span>
+      </button>
+    </div>
+  </div>
 </main>

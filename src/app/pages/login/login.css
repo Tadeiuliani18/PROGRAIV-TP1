@@ -47,8 +47,7 @@
 }
 
 .login-box .user-box input:focus~label,
-.login-box .user-box input:active~label,
-.login-box .user-box input:valid~label {
+.login-box .user-box input:not(:placeholder-shown)~label {
     top: -20px;
     left: 0;
     color: #03e9f4;
@@ -229,4 +228,23 @@
 
 .login-error{
     color: red;
+}
+
+.password-box {
+    position: relative;
+}
+
+.eye-button {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    background: transparent;
+    border: none;
+    color: #03e9f4;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.eye-button:hover {
+    transform: scale(1.1);
 }

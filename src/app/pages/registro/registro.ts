@@ -22,6 +22,9 @@ export class Registro implements OnInit, OnDestroy {
   confirmPassword = '';
   error = '';
   usuario: any = null;
+  showPassword = false;
+  showConfirmPassword = false;
+
   private sub!: Subscription;
 
   constructor(

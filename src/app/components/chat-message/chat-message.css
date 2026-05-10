@@ -1,0 +1,88 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* 1. Selector base para todos los mensajes */
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  max-width: 80%;
+  width: fit-content;
+  /* IMPORTANTE: Forzamos la alineación a la izquierda por defecto */
+  align-self: flex-start !important; 
+}
+
+/* 2. Selector específico para cuando ES PROPIO */
+/* Usamos el encadenamiento de clases para asegurar que gane la especificidad */
+.message-wrapper.own-message {
+  /* ESTO LO MUEVE A LA DERECHA */
+  align-self: flex-end !important; 
+}
+
+/* --- COLORES VIOLETA (Otros) --- */
+.message-bubble {
+  padding: 10px 16px;
+  background: rgba(188, 19, 254, 0.02);
+  border: 1px solid rgba(194, 52, 250, 0.4);
+  border-radius: 12px;
+  color: #ffffff;
+}
+
+.user-name {
+  color: #c43bfa; /* Violeta */
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+/* --- COLORES CIAN (Propio) --- */
+.own-message .message-bubble {
+  border-color: rgba(0, 242, 255, 0.6) !important;
+  background: rgba(0, 242, 255, 0.03) !important;
+}
+
+.own-message .user-name {
+  color: #00f2ff !important; /* Cian */
+}
+
+/* --- RESTO DE ESTILOS --- */
+.message-info {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+}
+
+.own-message .message-info {
+  flex-direction: row-reverse;
+}
+
+.message-time { color: #666; }
+.message-text { margin: 0; font-family: 'Inter', sans-serif; font-size: 0.83rem; }
+
+
+.message-wrapper.error .message-bubble {
+    border-color: #ffcc00 !important;
+    opacity: 0.8;
+}
+
+.error-indicator {
+    color: #ffcc00;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    animation: fadeIn 0.3s ease;
+}
+
+.own-message .error-indicator {
+    justify-content: flex-end;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

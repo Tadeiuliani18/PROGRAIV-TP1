@@ -1,14 +1,197 @@
 .foro-page {
-    max-width: 960px;
-    margin: 2rem auto;
-    padding: 1rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 85vh;
 }
 
-.foro-page h1 {
-    margin-bottom: 1rem;
+.titulo{
+    font-size: 38px;
+    /* Un poco más pequeño para ganar espacio vertical */
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+    color: white;
 }
 
-.foro-page p {
-    color: #444;
+.chat-container {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.chat-window {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* El secreto está en este gap para separar los globos */
+  gap: 5px; 
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-window::-webkit-scrollbar-thumb {
+  background: #00f2ff;
+  border-radius: 10px;
+}
+
+.chat-input-area {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-input-area input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 242, 255, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  color: white;
+  outline: none;
+}
+
+.chat-input-area input:focus {
+  border-color: #00f2ff;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.send-btn {
+  background: transparent;
+  color: #00f2ff;
+  border: 2px solid #00f2ff;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+  background: #00f2ff;
+  color: #0d0d12;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+}
+
+h1 {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  color: white;
+  text-align: center;
+  letter-spacing: -0.5px;
+  /* Para que se vea más compacta y pro */
+}
+
+/* --- ESTILO PROFESIONAL DEL ERROR NEÓN --- */
+.auth-error-toast {
+    position: absolute; /* <--- Ahora depende de .foro-page, no de la ventana */
+    top: 75px; /* <--- Ajusta esto para que quede *justo* debajo del título "Sala de Chat" */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* Un z-index alto, pero no tanto como para tapar un modal si lo tuvieras */
+    
+    /* Fondo oscuro semi-transparente y desenfocado (Glow de atrás) */
+    background: rgba(10, 5, 5, 0.85); 
+    backdrop-filter: blur(4px); /* <--- Profesionalismo instantáneo */
+    
+    /* Texto Rojo Neón más tenue, para que no grite tanto pero sea legible */
+    color: #ff4d4d; 
+    
+    /* Diseño estilizado: un panel estrecho con bordes afilados */
+    padding: 10px 30px;
+    border-radius: 4px;
+    
+    /* Borde neón con degradado o un glow sutil */
+    border: 1px solid rgba(255, 77, 77, 0.5);
+    border-top: 2px solid #ff4d4d; /* <--- Una línea neón sólida arriba da toque de 'Alerta de Sistema' */
+
+    /* Glow característico */
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.2), 
+                inset 0 0 10px rgba(255, 77, 77, 0.1);
+    
+    /* Tipografía tech */
+    text-transform: uppercase;
+    font-size: 0.75rem; /* Más pequeño para que sea profesional */
+    letter-spacing: 2px; /* Más espaciado entre letras */
+    font-weight: 600;
+    white-space: nowrap; /* Que no se corte en dos líneas */
+
+    /* Animación de entrada: Un leve "deslizamiento" desde arriba */
+    animation: neonSlideIn 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes neonSlideIn {
+    from {
+        opacity: 0;
+        top: 60px; /* Un poco más arriba de su posición final */
+    }
+    to {
+        opacity: 1;
+        top: 75px; /* <--- Coincide con la posición final definida arriba */
+    }
+}
+
+/* foro.css */
+
+/* --- 1. Contenedor del mensaje sutil dentro del chat --- */
+.chat-window .error-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Ocupa todo el alto de la ventana de mensajes */
+  text-align: center;
+  color: #ffcc00; /* Amarillo/Ámbar neón suave */
+  font-family: 'Poppins', sans-serif;
+  opacity: 0.8; /* Un poco transparente para más suavidad */
+}
+
+.chat-window .error-icon {
+  font-size: 2.5rem; /* Icono mediano */
+  margin-bottom: 15px;
+  /* Glow suave ámbar */
+  text-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+}
+
+.chat-window .error-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  max-width: 300px; /* Para que no ocupe todo el ancho */
+}
+
+/* --- 2. Estado desactivado para el input (opcional) --- */
+.chat-input-area.disabled {
+  opacity: 0.5;
+  pointer-events: none; /* No deja hacer clic */
+}
+
+.chat-input-area.input-error input {
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.chat-input-area.input-error .send-btn {
+    border-color: #ffcc00;
+    color: #ffcc00;
+}
+
+.error-text::placeholder {
+    color: #ffcc00;
+    opacity: 0.7;
 }

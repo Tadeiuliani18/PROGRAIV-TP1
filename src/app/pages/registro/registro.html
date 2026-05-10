@@ -5,34 +5,69 @@
     <form (ngSubmit)="register($event)">
 
       <div class="user-box">
-        <input type="text" name="nombre" [(ngModel)]="nombre" required />
+        <input type="text" name="nombre" [(ngModel)]="nombre" required  placeholder=" "/>
         <label>Nombre</label>
       </div>
 
       <div class="user-box">
-        <input type="text" name="apellido" [(ngModel)]="apellido" required />
+        <input type="text" name="apellido" [(ngModel)]="apellido" required  placeholder=" "/>
         <label>Apellido</label>
       </div>
 
       <div class="user-box">
-        <input type="number" name="edad" [(ngModel)]="edad" required />
+        <input type="number" name="edad" [(ngModel)]="edad" required  placeholder=" "/>
         <label>Edad</label>
       </div>
 
       <div class="user-box">
-        <input type="email" name="email" [(ngModel)]="email" required />
+        <input type="email" name="email" [(ngModel)]="email" required placeholder=" "/>
         <label>Email</label>
       </div>
 
-      <div class="user-box">
-        <input type="password" name="password" [(ngModel)]="password" required />
+      <div class="user-box password-box">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          required
+          placeholder=" "
+        />
+
         <label>Contraseña</label>
+
+        @if (password) {
+          <button
+            type="button"
+            class="eye-button"
+            (click)="showPassword = !showPassword"
+          >
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        }
       </div>
 
-      <div class="user-box">
-        <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required />
+      <div class="user-box password-box">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          required
+          placeholder=" "
+        />
+
         <label>Confirmar Contraseña</label>
+
+        @if (confirmPassword) {
+          <button
+            type="button"
+            class="eye-button"
+            (click)="showConfirmPassword = !showConfirmPassword"
+          >
+            {{ showConfirmPassword ? '🙈' : '👁️' }}
+          </button>
+        }
       </div>
+
 
       @if (error) {
       <p class="login-error">{{ error }}</p>

@@ -1,31 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth';
-import { Subscription } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-quien-soy',
+  standalone: true,
   imports: [NavbarComponent],
   templateUrl: './quien-soy.html',
   styleUrl: './quien-soy.css',
 })
-export class QuienSoy implements OnInit, OnDestroy {
+export class QuienSoy implements OnInit {
+  // Inyecciones modernas
+  private http = inject(HttpClient);
+  private authService = inject(AuthService);
 
-  usuario: any;
-  usuarioAuth: any = null;
-  username: string = 'Tadeiuliani18'; // 🔥 CAMBIALO si querés
-  private sub!: Subscription;
+  // Definimos la Signal para los datos de GitHub
+  usuario = signal<any>(null);
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  // Convertimos el observable de Auth a Signal también para ser consistentes
+  usuarioAuth = toSignal(this.authService.user$);
+
+  username: string = 'Tadeiuliani18';
 
   ngOnInit() {
-    this.sub = this.authService.user$.subscribe(user => this.usuarioAuth = user);
     this.obtenerDatosGithub();
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
   obtenerDatosGithub() {
@@ -33,12 +33,12 @@ export class QuienSoy implements OnInit, OnDestroy {
 
     this.http.get(url).subscribe({
       next: (data) => {
-        this.usuario = data;
+        // Actualizamos la Signal. Esto notificará al HTML automáticamente.
+        this.usuario.set(data);
       },
       error: (err) => {
         console.error('Error al obtener datos de GitHub', err);
       }
     });
   }
-
 }

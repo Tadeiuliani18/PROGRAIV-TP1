@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,7 @@ export class NavbarComponent {
   constructor(private authService: AuthService) { }
 
   async logout() {
+    console.log('Cerrando sesión para:', this.usuario);
     await this.authService.logout();
   }
 

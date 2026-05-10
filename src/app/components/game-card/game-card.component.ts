@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-
 @Component({
     selector: 'app-game-card',
     imports: [CommonModule, RouterModule],
@@ -14,6 +13,8 @@ export class GameCardComponent {
     @Input() descripcion!: string;
     @Input() imagen!: string;
     @Input() ruta!: string;
+    // Creamos un evento para avisar al padre
+    @Output() intentarJugar = new EventEmitter<string>();
 
     constructor(private router: Router) { }
 
@@ -21,8 +22,13 @@ export class GameCardComponent {
         return typeof value === 'string' && /\.(png|jpe?g|gif|svg|webp)$/i.test(value.trim());
     }
 
+    //jugar() {
+    //    console.log('Navegando a:', this.ruta);
+    // /   this.router.navigateByUrl(this.ruta);
+    //}
+
     jugar() {
-        console.log('Navegando a:', this.ruta);
-        this.router.navigateByUrl(this.ruta);
+        // En lugar de navegar, emitimos la ruta al padre
+        this.intentarJugar.emit(this.ruta);
     }
 }
