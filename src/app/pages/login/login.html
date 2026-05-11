@@ -43,8 +43,8 @@
 
 
       <!-- ERROR DE LOGIN -->
-      @if (error) {
-      <p class="login-error">{{ error }}</p>
+      @if (error()) {
+      <p class="login-error">{{ error() }}</p>
       }
 
       <button type="submit" class="submit-button">
