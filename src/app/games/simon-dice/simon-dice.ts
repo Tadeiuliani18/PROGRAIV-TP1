@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth'; 
 import { GamesService } from '../../services/games.service';
 import { Router } from '@angular/router';
-
+import { CommonModule } from '@angular/common'; // <--- 1. Asegúrate de que esté esta importación
 
 @Component({
   selector: 'app-simon-dice',

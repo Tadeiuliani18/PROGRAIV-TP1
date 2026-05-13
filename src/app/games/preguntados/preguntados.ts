@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-preguntados',
   templateUrl: 'preguntados.html',
-  styleUrls: ['preguntados.css']
+  styleUrls: ['preguntados.css'],
+  standalone: false
 })
 export class PreguntadosComponent implements OnInit {
   preguntaActual: PreguntaFútbol | null = null;
