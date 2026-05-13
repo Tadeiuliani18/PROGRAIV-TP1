@@ -1,0 +1,41 @@
+<div class="game-container">
+  <div class="quiz-card">
+    <div class="header">
+      <span class="score-badge">Ronda: {{ puntaje }}</span>
+    </div>
+
+    <!-- Contenedor del Escudo -->
+    <div class="image-wrapper">
+      @if (preguntaActual) {
+        <img [src]="preguntaActual.imagen" alt="Escudo de equipo" class="team-shield">
+      } @else {
+        <div class="loader-shield"></div>
+      }
+    </div>
+
+    <h2 class="question-text">¿A qué equipo pertenece este escudo?</h2>
+
+    <!-- Opciones -->
+    <div class="options-grid">
+      @for (opcion of preguntaActual?.opciones; track opcion) {
+        <button class="option-btn" (click)="verificarRespuesta(opcion)">
+          {{ opcion }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Modal de Game Over (Reutilizando tu lógica) -->
+  @if (mostrarModal()) {
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <h2>FIN DEL JUEGO</h2>
+        <p class="modal-score">Aciertos totales: {{ puntaje }}</p>
+        <div class="modal-actions">
+          <button class="btn-modal restart" (click)="iniciarJuego()">REINTENTAR</button>
+          <button class="btn-modal exit" (click)="salir()">SALIR</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

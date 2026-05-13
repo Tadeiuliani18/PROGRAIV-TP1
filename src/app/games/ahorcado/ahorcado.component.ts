@@ -23,7 +23,6 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     won = false;
     loading = false;
 
-    // Progresión y Puntuación
     nivelesCompletados = 0;
     maxNiveles = 2;
     puntajeAcumulado = 0;
@@ -63,7 +62,6 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
         this.loading = true;
         this.gameOver = false;
 
-        // Si perdimos o completamos la maratón, reseteamos todo el progreso
         if (!this.won || this.nivelesCompletados >= this.maxNiveles) {
             this.nivelesCompletados = 0;
             this.puntajeAcumulado = 0;
@@ -100,7 +98,6 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
         this.selectedLetters.add(letter);
 
         if (this.word.includes(letter)) {
-            // Sumamos 10 puntos por cada letra correcta (Puntaje Justo)
             this.puntajeAcumulado += 10;
         } else {
             this.wrongGuesses += 1;
@@ -122,20 +119,17 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
         this.won = won;
         this.gameOver = true;
         
-        // Acumulamos el tiempo de esta ronda
         this.tiempoTotalSegundos += this.timerService.segundos();
 
         if (won) {
             this.nivelesCompletados++;
-            this.puntajeAcumulado += 100; // Bonus por nivel completado
+            this.puntajeAcumulado += 100; 
             
-            // Si llegó al final de la maratón (2 niveles)
             if (this.nivelesCompletados >= this.maxNiveles) {
-                this.puntajeAcumulado = Math.round(this.puntajeAcumulado * 1.5); // Bonus victoria total
+                this.puntajeAcumulado = Math.round(this.puntajeAcumulado * 1.5); 
                 await this.guardarEstadisticas();
             }
         } else {
-            // Si perdió en cualquier nivel, guardamos lo que llegó a hacer
             await this.guardarEstadisticas();
         }
     }

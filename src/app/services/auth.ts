@@ -34,7 +34,6 @@ export class AuthService {
 
     if (error) throw error;
 
-    // 👇 LOGIN PRIMERO
     const { error: loginError } = await this.supabase.auth.signInWithPassword({
       email,
       password
@@ -42,7 +41,6 @@ export class AuthService {
 
     if (loginError) throw loginError;
 
-    // 👇 AHORA sí insert
     const { error: dbError } = await this.supabase.from('usuarios').insert([
       {
         id: data.user?.id,

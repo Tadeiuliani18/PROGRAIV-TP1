@@ -32,7 +32,7 @@ export class Login implements OnInit, OnDestroy {
   }
 
   async login(event: Event): Promise<void> {
-    event.preventDefault(); // SIEMPRE prevenimos submit
+    event.preventDefault(); 
     console.log('Intentando login con:', this.email, this.password);
     this.error.set('');
 
@@ -45,12 +45,12 @@ export class Login implements OnInit, OnDestroy {
       await this.authService.login(this.email, this.password);
 
       console.log('Login exitoso:', this.email);
-      this.error.set(''); // Limpiar errores previos
+      this.error.set(''); 
       this.router.navigate(['/home']);
 
     } catch (error: any) {
       console.error('Error login:', error.message);
-      // Mostrar mensaje de error más amigable
+    
       if (error.message.includes('Invalid login credentials')) {
         this.error.set('Email o contraseña incorrectos.');
       } else if (error.message.includes('Email not confirmed')) {

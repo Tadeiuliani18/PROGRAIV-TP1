@@ -1,7 +1,4 @@
-/* Contenedor Principal */
 .ahorcado-page {
-    background-color: #0b0e14;
-    /* Fondo oscuro como tu Home */
     color: #ffffff;
     min-height: 100vh;
     padding: 40px 20px;
@@ -9,16 +6,18 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: 
+    radial-gradient(circle at -20% -20%, rgba(0, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 50%), /* Luz en esquina sup. izq. */
+    radial-gradient(circle at center, #1b1b3a 0%, #050505 100%);
+    background-attachment: fixed;
 }
 
-/* Título y Header */
 .ahorcado-header h2 {
     font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 5px;
     color: #00f3ff;
-    /* Cian Neón */
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
     text-align: center;
 }
@@ -30,12 +29,8 @@
     margin-bottom: 20px;
 }
 
-/* El Tablero y el Dibujo */
 .ahorcado-board {
-    background: #151921;
-    /* Un gris azulado muy oscuro */
     border: 2px solid #39ff14;
-    /* Borde neón verde */
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
@@ -49,7 +44,6 @@
 .hangman-svg {
     height: 250px;
     color: #00f3ff;
-    /* El color que tomará el "currentColor" */
     filter: drop-shadow(0 0 5px #00f3ff);
 }
 
@@ -74,7 +68,6 @@
     margin: 0 0 10px;
 }
 
-/* Grilla de letras (Teclado) */
 .alphabet-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
@@ -101,7 +94,6 @@
     transform: translateY(-2px);
 }
 
-/* Estados de los botones */
 .alphabet-grid button.selected {
     background: rgba(0, 243, 255, 0.2);
     border-color: #00f3ff;
@@ -119,7 +111,6 @@
     cursor: not-allowed;
 }
 
-/* Panel de Resultados */
 .result-panel {
     margin-top: 30px;
     text-align: center;
@@ -199,7 +190,6 @@
 .word-display {
     display: flex;
     gap: 15px;
-    /* Espacio entre letras */
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -214,13 +204,11 @@
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
-    /* La rayita inferior estilo neón */
     border-bottom: 4px solid #00f3ff;
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
     transition: all 0.3s ease;
 }
 
-/* Animación cuando aparece la letra */
 .letter-slot:not(:empty) {
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -238,7 +226,6 @@
 }
 
 
-/* Capa oscura de fondo */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -254,7 +241,6 @@
     animation: fadeIn 0.3s ease;
 }
 
-/* Caja del Modal */
 .modal-content {
     background: #151921;
     padding: 40px;
@@ -267,7 +253,6 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos dinámicos según gane o pierda */
 .modal-win {
     border-color: #39ff14;
     box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
@@ -321,7 +306,6 @@
     margin-top: 5px;
 }
 
-/* Botón Principal */
 .btn-primary {
     background: #7b2ff7;
     color: white;
@@ -353,7 +337,6 @@
 }
 
 
-/* 1. Fondo Oscuro Detrás del Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -361,9 +344,7 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
-    /* Oscurece el fondo */
     backdrop-filter: blur(8px);
-    /* Efecto borroso pro */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -371,10 +352,8 @@
     animation: fadeIn 0.3s ease-out;
 }
 
-/* 2. Contenedor del Modal */
 .modal-content {
     background: #151921;
-    /* Fondo oscuro sólido */
     border-radius: 24px;
     padding: 40px;
     width: 90%;
@@ -386,20 +365,16 @@
     transition: all 0.3s ease;
 }
 
-/* 3. Variaciones Neón (Ganaste / Perdiste) */
 .modal-win {
     border-color: #39ff14;
-    /* Verde Neón */
     box-shadow: 0 0 25px rgba(57, 255, 20, 0.2);
 }
 
 .modal-lose {
     border-color: #ff3131;
-    /* Rojo Neón */
     box-shadow: 0 0 25px rgba(255, 49, 49, 0.2);
 }
 
-/* 4. Header y Iconos */
 .status-icon {
     font-size: 4.5rem;
     display: block;
@@ -425,7 +400,6 @@
     text-shadow: 0 0 15px rgba(255, 49, 49, 0.5);
 }
 
-/* 5. El mensaje y la palabra revelada */
 .modal-message {
     color: #a0a0a0;
     font-size: 1rem;
@@ -456,11 +430,9 @@
     letter-spacing: 6px;
     text-transform: uppercase;
     font-family: 'Courier New', Courier, monospace;
-    /* Estilo terminal */
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* 6. Botón Principal (UX Mejorada) */
 .btn-primary {
     background: linear-gradient(45deg, #7b2ff7, #2d00f7);
     color: white;
@@ -486,7 +458,6 @@
     transform: translateY(1px);
 }
 
-/* Animaciones */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -528,7 +499,7 @@
 }
 
 .stat-value.highlight {
-    color: #00f3ff; /* Cian neón para el puntaje */
+    color: #00f3ff; 
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
 }
 

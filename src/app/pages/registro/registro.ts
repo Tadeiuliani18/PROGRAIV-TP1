@@ -81,7 +81,6 @@ export class Registro implements OnInit, OnDestroy {
 
     } catch (error: any) {
       console.error('Error registro:', error.message);
-      // Mostrar mensaje de error más amigable
       if (error.message.includes('already registered')) {
         this.error = 'Este email ya está registrado.';
       } else if (error.message.includes('Password')) {

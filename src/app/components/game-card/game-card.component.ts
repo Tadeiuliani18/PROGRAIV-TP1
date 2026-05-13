@@ -13,7 +13,6 @@ export class GameCardComponent {
     @Input() descripcion!: string;
     @Input() imagen!: string;
     @Input() ruta!: string;
-    // Creamos un evento para avisar al padre
     @Output() intentarJugar = new EventEmitter<string>();
 
     constructor(private router: Router) { }
@@ -22,13 +21,8 @@ export class GameCardComponent {
         return typeof value === 'string' && /\.(png|jpe?g|gif|svg|webp)$/i.test(value.trim());
     }
 
-    //jugar() {
-    //    console.log('Navegando a:', this.ruta);
-    // /   this.router.navigateByUrl(this.ruta);
-    //}
 
     jugar() {
-        // En lugar de navegar, emitimos la ruta al padre
         this.intentarJugar.emit(this.ruta);
     }
 }

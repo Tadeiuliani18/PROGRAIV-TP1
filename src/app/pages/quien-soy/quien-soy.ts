@@ -12,14 +12,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './quien-soy.css',
 })
 export class QuienSoy implements OnInit {
-  // Inyecciones modernas
   private http = inject(HttpClient);
   private authService = inject(AuthService);
 
-  // Definimos la Signal para los datos de GitHub
   usuario = signal<any>(null);
 
-  // Convertimos el observable de Auth a Signal también para ser consistentes
   usuarioAuth = toSignal(this.authService.user$);
 
   username: string = 'Tadeiuliani18';
@@ -33,7 +30,6 @@ export class QuienSoy implements OnInit {
 
     this.http.get(url).subscribe({
       next: (data) => {
-        // Actualizamos la Signal. Esto notificará al HTML automáticamente.
         this.usuario.set(data);
       },
       error: (err) => {

@@ -8,7 +8,6 @@
 
 .titulo{
     font-size: 38px;
-    /* Un poco más pequeño para ganar espacio vertical */
     font-weight: 700;
     text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
     color: white;
@@ -33,7 +32,6 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  /* El secreto está en este gap para separar los globos */
   gap: 5px; 
 }
 
@@ -92,77 +90,63 @@ h1 {
   color: white;
   text-align: center;
   letter-spacing: -0.5px;
-  /* Para que se vea más compacta y pro */
 }
 
-/* --- ESTILO PROFESIONAL DEL ERROR NEÓN --- */
 .auth-error-toast {
-    position: absolute; /* <--- Ahora depende de .foro-page, no de la ventana */
-    top: 75px; /* <--- Ajusta esto para que quede *justo* debajo del título "Sala de Chat" */
+    position: absolute; 
+    top: 75px; 
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10; /* Un z-index alto, pero no tanto como para tapar un modal si lo tuvieras */
-    
-    /* Fondo oscuro semi-transparente y desenfocado (Glow de atrás) */
+    z-index: 10; 
     background: rgba(10, 5, 5, 0.85); 
-    backdrop-filter: blur(4px); /* <--- Profesionalismo instantáneo */
+    backdrop-filter: blur(4px); 
     
-    /* Texto Rojo Neón más tenue, para que no grite tanto pero sea legible */
     color: #ff4d4d; 
     
-    /* Diseño estilizado: un panel estrecho con bordes afilados */
     padding: 10px 30px;
     border-radius: 4px;
     
-    /* Borde neón con degradado o un glow sutil */
     border: 1px solid rgba(255, 77, 77, 0.5);
-    border-top: 2px solid #ff4d4d; /* <--- Una línea neón sólida arriba da toque de 'Alerta de Sistema' */
+    border-top: 2px solid #ff4d4d; 
 
-    /* Glow característico */
     box-shadow: 0 0 15px rgba(255, 77, 77, 0.2), 
                 inset 0 0 10px rgba(255, 77, 77, 0.1);
     
-    /* Tipografía tech */
     text-transform: uppercase;
-    font-size: 0.75rem; /* Más pequeño para que sea profesional */
-    letter-spacing: 2px; /* Más espaciado entre letras */
+    font-size: 0.75rem; 
+    letter-spacing: 2px;
     font-weight: 600;
-    white-space: nowrap; /* Que no se corte en dos líneas */
+    white-space: nowrap; 
 
-    /* Animación de entrada: Un leve "deslizamiento" desde arriba */
     animation: neonSlideIn 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 @keyframes neonSlideIn {
     from {
         opacity: 0;
-        top: 60px; /* Un poco más arriba de su posición final */
+        top: 60px; 
     }
     to {
         opacity: 1;
-        top: 75px; /* <--- Coincide con la posición final definida arriba */
+        top: 75px; 
     }
 }
 
-/* foro.css */
-
-/* --- 1. Contenedor del mensaje sutil dentro del chat --- */
 .chat-window .error-placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Ocupa todo el alto de la ventana de mensajes */
+  height: 100%; 
   text-align: center;
-  color: #ffcc00; /* Amarillo/Ámbar neón suave */
+  color: #ffcc00; 
   font-family: 'Poppins', sans-serif;
-  opacity: 0.8; /* Un poco transparente para más suavidad */
+  opacity: 0.8; 
 }
 
 .chat-window .error-icon {
-  font-size: 2.5rem; /* Icono mediano */
+  font-size: 2.5rem; 
   margin-bottom: 15px;
-  /* Glow suave ámbar */
   text-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
 }
 
@@ -171,13 +155,12 @@ h1 {
   font-weight: 500;
   letter-spacing: 0.5px;
   line-height: 1.4;
-  max-width: 300px; /* Para que no ocupe todo el ancho */
+  max-width: 300px; 
 }
 
-/* --- 2. Estado desactivado para el input (opcional) --- */
 .chat-input-area.disabled {
   opacity: 0.5;
-  pointer-events: none; /* No deja hacer clic */
+  pointer-events: none; 
 }
 
 .chat-input-area.input-error input {

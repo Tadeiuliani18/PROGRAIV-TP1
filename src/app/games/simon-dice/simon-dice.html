@@ -1,0 +1,38 @@
+<div class="game-container">
+  <div class="info-panel">
+    <h2>{{ mensaje }}</h2>
+  </div>
+
+  <div class="simon-board">
+    <div class="quad green" [class.active]="colorActivo() === 'verde'" (click)="presionarColor('verde')"></div>
+    <div class="quad red" [class.active]="colorActivo() === 'rojo'" (click)="presionarColor('rojo')"></div>
+    <div class="quad yellow" [class.active]="colorActivo() === 'amarillo'" (click)="presionarColor('amarillo')"></div>
+    <div class="quad blue" [class.active]="colorActivo() === 'azul'" (click)="presionarColor('azul')"></div>
+
+    <div class="center-hub">
+      <div class="level-display">
+        <span class="label">NIVEL</span>
+        <span class="count">{{ puntaje | number:'2.0' }}</span>
+      </div>
+      <button class="btn-start" (click)="iniciarJuego()">EMPEZAR</button>
+      <div class="led-container">
+        <div class="led" [class.on]="!estaJugando && secuencia.length > 0"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Game Over -->
+   @if (mostrarModal()) {
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <h2>¡PERDISTE!</h2>
+        <p class="modal-score">Llegaste a la ronda {{ puntaje }}</p>
+        
+        <div class="modal-actions">
+          <button class="btn-modal restart" (click)="iniciarJuego()">REINTENTAR</button>
+          <button class="btn-modal exit" (click)="salir()">SALIR</button>
+        </div>
+      </div>
+    </div>
+   }
+</div>

@@ -223,7 +223,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* fondo más oscuro */
 }
 
 .login-error{

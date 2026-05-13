@@ -4,25 +4,19 @@
   width: 100%;
 }
 
-/* 1. Selector base para todos los mensajes */
 .message-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 12px;
   max-width: 80%;
   width: fit-content;
-  /* IMPORTANTE: Forzamos la alineación a la izquierda por defecto */
   align-self: flex-start !important; 
 }
 
-/* 2. Selector específico para cuando ES PROPIO */
-/* Usamos el encadenamiento de clases para asegurar que gane la especificidad */
 .message-wrapper.own-message {
-  /* ESTO LO MUEVE A LA DERECHA */
   align-self: flex-end !important; 
 }
 
-/* --- COLORES VIOLETA (Otros) --- */
 .message-bubble {
   padding: 10px 16px;
   background: rgba(188, 19, 254, 0.02);
@@ -32,22 +26,20 @@
 }
 
 .user-name {
-  color: #c43bfa; /* Violeta */
+  color: #c43bfa; 
   font-family: 'Inter', sans-serif;
   font-weight: 700;
 }
 
-/* --- COLORES CIAN (Propio) --- */
 .own-message .message-bubble {
   border-color: rgba(0, 242, 255, 0.6) !important;
   background: rgba(0, 242, 255, 0.03) !important;
 }
 
 .own-message .user-name {
-  color: #00f2ff !important; /* Cian */
+  color: #00f2ff !important; 
 }
 
-/* --- RESTO DE ESTILOS --- */
 .message-info {
   display: flex;
   gap: 8px;

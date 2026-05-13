@@ -13,9 +13,13 @@
   flex-direction: column;
   padding: 20px;
   font-family: 'Segoe UI', Roboto, monospace;
+  background: 
+  radial-gradient(circle at -20% -20%, rgba(0, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 50%), /* Luz en esquina sup. izq. */
+  radial-gradient(circle at center, #1b1b3a 0%, #050505 100%);
+  background-attachment: fixed;
+
 }
 
-/* Header de Stats */
 .game-header {
   display: flex;
   justify-content: center;
@@ -39,7 +43,6 @@
   text-shadow: 0 0 10px var(--neon-cyan);
 }
 
-/* Main Layout: Botones Laterales */
 .game-main {
   flex: 1;
   display: flex;
@@ -52,19 +55,18 @@
 }
 
 .side-button {
-  /*flex: 0 1 200px;*/
-  width: 200px;         /* Ajusta este valor al ancho de tu carta */
-  height: 280px;        /* Ajusta este valor al alto de tu carta */
+  width: 200px;         
+  height: 280px;       
   
   background: rgba(0, 0, 0, 0.4);
-  border-radius: 12px;  /* Reducido un poco para matchear la carta */
+  border-radius: 12px;  
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: 1.5rem;    /* Bajamos un poco el tamaño de letra si es muy grande */
+  font-size: 1.5rem;    
   text-transform: uppercase;
 }
 
@@ -85,7 +87,6 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Carta Central */
 .card-display {
   flex: 1;
   display: flex;
@@ -115,7 +116,6 @@
   font-weight: bold;
 }
 
-/* Mensajes y Game Over */
 .feedback-message {
   margin-top: 20px;
   font-size: 1.2rem;
@@ -163,22 +163,21 @@
   color: #000;
 }
 
-/* Layout Principal: Botones más anchos y pegados */
 .game-main {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center; /* Centra el bloque total */
-  gap: 10px;               /* Espacio mínimo entre botones y carta */
+  justify-content: center; 
+  gap: 10px;               
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .side-button {
-  flex: 1;                 /* Hace que los botones ocupen el espacio disponible */
-  max-width: 350px;        /* Pero con un límite para que no sean gigantes en ultra-wide */
-  height: 500px;           /* Más altos para llenar la pantalla */
+  flex: 1;                 
+  max-width: 350px;        
+  height: 500px;           
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   cursor: pointer;
@@ -202,20 +201,18 @@
   box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.2), 0 0 20px rgba(255, 0, 255, 0.2);
 }
 
-/* Carta Central */
 .card-display {
-  flex: 0 0 300px;         /* Tamaño fijo para que los botones laterales manden */
+  flex: 0 0 300px;         
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 2;
 }
 
-/* Modal de Derrota (Rojo) */
 .terminal-box.danger {
   border: 3px solid #ff4444;
   box-shadow: 0 0 30px rgba(255, 68, 68, 0.4);
-  background: #050000;     /* Fondo negro rojizo muy sutil */
+  background: #050000;     
 }
 
 .terminal-box.danger .terminal-title {
@@ -243,7 +240,6 @@
   box-shadow: 0 0 20px #ff4444;
 }
 
-/* Efecto al pasar el mouse por los botones de juego */
 .side-button:hover:not(:disabled) {
   filter: brightness(1.2);
   transform: scale(1.02);

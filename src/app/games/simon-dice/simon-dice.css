@@ -1,0 +1,239 @@
+:host {
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --neon-green: #39ff14;
+  --neon-red: #ff3131;
+  --neon-blue: #00d2ff;
+  --neon-yellow: #fbff00;
+  --bg-dark: #050505;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 1. Cambiamos justify-content para que empiece desde arriba */
+  justify-content: flex-start; 
+  /* 2. Eliminamos el padding superior (el de los lados lo dejamos si quieres) */
+  padding: 0 20px 20px 20px; 
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.info-panel h2 {
+  /* 3. Eliminamos el margen superior que traen los h2 por defecto */
+  margin-top: 0; 
+  padding-top: 20px; /* Si quieres un poquito de aire, usa padding en lugar de margin */
+  color: white;
+  text-shadow: 0 0 10px var(--neon-cyan);
+  letter-spacing: 4px;
+  text-align: center;
+}
+/* Tablero Cuadrado */
+.simon-board {
+  position: relative;
+  width: 550px;
+  height: 550px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 15px;
+  background: #111;
+  border: 4px solid #333;
+  box-shadow: 0 0 20px rgba(5, 226, 255, 0.932);
+  border-radius: 15px;
+}
+
+.quad {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.3;
+  border: 2px solid transparent;
+}
+
+/* Colores y bordes neón */
+.green { 
+  background-color: #00ff00; 
+  border-color: var(--neon-green);
+}
+.red { 
+  background-color: #ff0000; 
+  border-color: var(--neon-red);
+}
+.yellow { 
+  background-color: #ffff00; 
+  border-color: var(--neon-yellow);
+}
+.blue { 
+  background-color: #0000ff; 
+  border-color: var(--neon-blue);
+}
+
+/* Efecto Activo (Brillo Intenso) */
+.quad.active {
+  opacity: 1;
+  filter: brightness(1.5);
+  box-shadow: 0 0 50px currentColor; /* Brilla según su color */
+  transform: scale(0.98);
+}
+
+/* Centro del Juego */
+.center-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: #000;
+  border: 2px solid var(--neon-magenta);
+  box-shadow: inset 0 0 15px var(--neon-magenta), 0 0 15px var(--neon-magenta);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px;
+  z-index: 10;
+}
+
+.level-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-size: 10px;
+  color: var(--neon-cyan);
+  letter-spacing: 2px;
+}
+
+.count {
+  font-family: 'Courier New', monospace;
+  font-size: 42px; /* Nivel bien grande */
+  color: white;
+  text-shadow: 0 0 10px white, 0 0 20px var(--neon-cyan);
+}
+
+.btn-start {
+  background: transparent;
+  color: rgb(195, 0, 255);
+  border: 1px solid rgb(195, 0, 255);
+  padding: 8px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-start:hover {
+  background:rgb(195, 0, 255);
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 15px white;
+}
+
+.led {
+  width: 12px;
+  height: 12px;
+  background: #222;
+  border-radius: 50%;
+  border: 1px solid #444;
+}
+
+.led.on {
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Overlay que cubre toda la pantalla */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+
+/* Caja del modal */
+.modal-content {
+  background: #111;
+  padding: 40px;
+  border: 2px solid var(--neon-red);
+  box-shadow: 0 0 20px var(--neon-red);
+  text-align: center;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-content h2 {
+  color: var(--neon-red);
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px var(--neon-red);
+}
+
+.modal-score {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.restart {
+  background: transparent;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+}
+
+.restart:hover {
+  background: var(--neon-green);
+  color: #111;
+  box-shadow: 0 0 15px var(--neon-green);
+}
+
+.exit {
+  background: transparent;
+  color: var(--neon-red);
+  border: 1px solid var(--neon-red);
+}
+
+.exit:hover {
+  background: var(--neon-red);
+  color: #111;
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+.btn-modal:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+.save-status {
+  display: block;
+  margin-top: 20px;
+  color: #888;
+  font-style: italic;
+}

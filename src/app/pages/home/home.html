@@ -20,11 +20,11 @@
         </app-game-card>
 
         <app-game-card [color]="'#FF9500'" [nombre]="'Preguntados'" [descripcion]="'Advina la palabra y quiz'"
-            [imagen]="'/preguntados-juego.jpg'" [ruta]="'/preguntados'" (intentarJugar)="verificarYJugar($event)">
+            [imagen]="'/preguntados-juego.jpg'" [ruta]="'/games/preguntados'" (intentarJugar)="verificarYJugar($event)">
         </app-game-card>
 
-        <app-game-card [color]="'#9D4EDD'" [nombre]="'Juego Propio'" [descripcion]="'Juego un puzzle'" [imagen]="'🚀'"
-            [ruta]="'/juego-propio'" (intentarJugar)="verificarYJugar($event)">
+        <app-game-card [color]="'#9D4EDD'" [nombre]="'Simon Dice'" [descripcion]="'Juega mi juego propio'" [imagen]="'/simon.png'"
+            [ruta]="'/games/simon-dice'" (intentarJugar)="verificarYJugar($event)">
         </app-game-card>
     </section>
 

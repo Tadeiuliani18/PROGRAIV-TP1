@@ -14,7 +14,6 @@ export class ForoService {
     );
   }
 
-  // Traer los mensajes existentes
   async obtenerMensajes() {
     const { data, error } = await this.supabase
       .from('mensajes')
@@ -28,7 +27,6 @@ export class ForoService {
     return data;
   }
 
-  // Guardar un nuevo mensaje
   async enviarMensaje(mensaje: { usuario: string; texto: string; uid: string }) {
     const { error } = await this.supabase
       .from('mensajes')
@@ -46,7 +44,6 @@ export class ForoService {
     }
   }
 
-  // Exponer el cliente para la suscripción Realtime en el componente
   getSupabase() {
     return this.supabase;
   }

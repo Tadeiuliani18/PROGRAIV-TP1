@@ -17,13 +17,11 @@ export class PalabrasService {
 
     } catch (error) {
       console.error('Error obteniendo palabra:', error);
-      // Fallback por si la API falla
       const palabrasFallback = ['ANGULAR', 'SALA', 'JUEGO', 'CODIGO'];
       return palabrasFallback[Math.floor(Math.random() * palabrasFallback.length)];
     }
   }
 
-  // Función clave: Quita acentos y pasa a mayúsculas para que el juego sea justo
   
 }
 

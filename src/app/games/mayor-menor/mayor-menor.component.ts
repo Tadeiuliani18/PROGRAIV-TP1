@@ -38,7 +38,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
     user: any = null;
     private sub?: Subscription;
 
-    // Signals para el estado del juego
     deckId = signal<string | null>(null);
     currentCard = signal<DeckCard | null>(null);
     nextCard = signal<DeckCard | null>(null);
@@ -65,7 +64,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub?.unsubscribe();
-        // Limpiamos el interval si el componente se destruye en medio de una partida
         this.timerService.reiniciar();
     }
 
@@ -82,7 +80,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
         this.saveMessage.set('');
         this.currentCard.set(null);
         this.nextCard.set(null);
-        // Reiniciamos el timer pero NO lo arrancamos todavía
         this.timerService.reiniciar();
         this.timerService.iniciar();  
 
@@ -141,8 +138,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
         if (this.gameOver() || this.loading() || !this.currentCard()) {
             return;
         }
-
-        // El timer arranca con el primer guess (iniciar() es idempotente: no duplica el interval)
         this.timerService.iniciar();
 
         this.loading.set(true);
@@ -180,7 +175,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
     }
 
     async finishGame() {
-        // Pausamos el timer al perder
         this.timerService.pausar();
         this.gameOver.set(true);
         await this.saveResult();
@@ -196,7 +190,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
             await this.gamesService.saveGameResult({
                 userId: this.user.id,
                 gameName: 'Mayor o Menor',
-                // Guardamos los segundos exactos del TimerService
                 tiempo: this.timerService.segundos(),
                 fecha: new Date(),
                 score: this.score()
@@ -210,7 +203,6 @@ export class MayorMenorComponent implements OnInit, OnDestroy {
 
     async endGame() {
         if (!this.gameOver()) {
-            // Pausamos el timer al terminar manualmente
             this.timerService.pausar();
             this.gameOver.set(true);
             await this.saveResult();

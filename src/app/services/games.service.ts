@@ -17,7 +17,7 @@ export class GamesService {
     async saveGameResult(result: {
         userId: string | null;
         gameName: string;
-        tiempo : number; // Duración en segundos
+        tiempo : number; 
         fecha: Date;
         score: number;
     }) {
@@ -26,7 +26,6 @@ export class GamesService {
             return;
         }
 
-        // Mapeamos los datos a la estructura exacta de la tabla games_results
         const { error } = await this.supabase.from('games_results').insert([
             {
                 id_usuario: result.userId,

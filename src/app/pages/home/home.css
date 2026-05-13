@@ -63,16 +63,10 @@ h1 {
 
 /* 2. Título principal con brillo cian */
 .hero-section h1 {
-  /* ... (estilos anteriores) ... */
-
-  /* Sutil resplandor cian detrás de las letras */
   text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
-/* 3. Títulos de las tarjetas de juegos al pasar el mouse (hover) */
-/* (Asumiendo que tus tarjetas tienen una clase 'card-title' y el contenedor principal 'card') */
 .card {
-  /* ... (estilos anteriores de Glassmorphism) ... */
   transition: all 0.3s ease;
 }
 
