@@ -1,0 +1,120 @@
+<div class="ranking-container">
+  <h1 class="neon-title">RANKING DE JUGADORES</h1>
+
+  <div class="tables-grid">
+    <!-- Tabla: Preguntados -->
+    <section class="ranking-section">
+      <h3><i class="fas fa-question-circle"></i> PREGUNTADOS</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Puesto</th>
+              <th>Jugador</th>
+              <th>Aciertos</th>
+              <th>Fecha</th>
+
+            </tr>
+          </thead>  
+          <tbody>
+            @for (res of rankingPreguntados(); track $index) {
+              <tr [class.top-player]="$index === 0">
+                <td>#{{ $index + 1 }}</td>
+                <td>{{ res.nombreUsuario }}</td>
+                <td>{{ res.puntaje }}</td>
+                <td>{{ res.fecha | date:'dd/MM/yyyy' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tabla: Juego Propio -->
+    <section class="ranking-section">
+      <h3><i class="fas fa-star"></i> SIMON DICE (Juego Propio)</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Puesto</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (res of rankingPropio(); track $index) {
+              <tr [class.top-player]="$index === 0">
+                <td>#{{ $index + 1 }}</td>
+                <td>{{ res.nombreUsuario }}</td>
+                <td>{{ res.puntaje }}</td>
+                <td>{{ res.fecha | date:'dd/MM/yyyy' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tabla: Juego Propio -->
+    <section class="ranking-section">
+      <h3><i class="fas fa-star"></i> AHORCADO</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Puesto</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+              <th>TIEMPO</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (res of rankingAhorcado(); track $index) {
+              <tr [class.top-player]="$index === 0">
+                <td>#{{ $index + 1 }}</td>
+                <td>{{ res.nombreUsuario }}</td>
+                <td>{{ res.puntaje }}</td>
+                <td>{{ res.tiempo }}</td>
+                <td>{{ res.fecha | date:'dd/MM/yyyy' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tabla: Juego Propio -->
+    <section class="ranking-section">
+      <h3><i class="fas fa-star"></i> MAYOR O MENOR</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Puesto</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+              <th>Tiempo</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (res of rankingMayorMenor(); track $index) {
+              <tr [class.top-player]="$index === 0">
+                <td>#{{ $index + 1 }}</td>
+                <td>{{ res.nombreUsuario }}</td>
+                <td>{{ res.puntaje }}</td>
+                <td>{{ res.tiempo }}</td>
+                <td>{{ res.fecha | date:'dd/MM/yyyy' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Repetir estructuras similares para Ahorcado y Mayor/Menor -->
+  </div>
+</div>

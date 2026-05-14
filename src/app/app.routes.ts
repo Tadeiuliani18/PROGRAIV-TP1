@@ -38,6 +38,11 @@
             canActivate: [AuthGuard]
         },
         {
+            path: 'ranking',
+            loadComponent: () => import('./pages/ranking/ranking').then(m => m.Ranking),
+            canActivate: [AuthGuard]
+        },
+        {
             path: 'games',
             loadChildren: () => import('./games/games.module').then(m => m.GamesModule)
         },

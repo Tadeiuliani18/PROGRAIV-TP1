@@ -1,0 +1,90 @@
+.ranking-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  padding: 40px 20px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.neon-title {
+  text-align: center;
+  color: #00f2ff;
+  text-shadow: 0 0 15px #00f2ff;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+.tables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ranking-section {
+  background: #121212;
+  border: 1px solid #333;
+  border-radius: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.ranking-section:hover {
+  transform: translateY(-5px);
+  border-color: #00f2ff;
+  box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+}
+
+.ranking-section h3 {
+  color: #00f2ff;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  color: #888;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 12px 8px;
+}
+
+td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #1f1f1f;
+  font-size: 0.95rem;
+}
+
+/* Resaltado para el mejor puntaje */
+.top-player {
+  background: rgba(0, 242, 255, 0.05);
+  color: #00f2ff;
+  font-weight: bold;
+}
+
+/* Estilo para la sección del juego propio (Rojo Neón) */
+.custom-game {
+  border-color: rgba(255, 49, 49, 0.3);
+}
+
+.custom-game h3, .custom-game .top-player {
+  color: #ff3131;
+  text-shadow: 0 0 5px rgba(255, 49, 49, 0.5);
+}
+
+.custom-game:hover {
+  border-color: #ff3131;
+  box-shadow: 0 5px 15px rgba(255, 49, 49, 0.2);
+}

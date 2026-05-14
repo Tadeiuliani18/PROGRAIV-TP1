@@ -6,8 +6,8 @@
 
     <!-- Contenedor del Escudo -->
     <div class="image-wrapper">
-      @if (preguntaActual) {
-        <img [src]="preguntaActual.imagen" alt="Escudo de equipo" class="team-shield">
+      @if (preguntaActual()) {
+        <img [src]="preguntaActual()!.imagen" alt="Escudo de equipo" class="team-shield">
       } @else {
         <div class="loader-shield"></div>
       }
@@ -17,7 +17,7 @@
 
     <!-- Opciones -->
     <div class="options-grid">
-      @for (opcion of preguntaActual?.opciones; track opcion) {
+      @for (opcion of preguntaActual()!.opciones; track opcion) {
         <button class="option-btn" (click)="verificarRespuesta(opcion)">
           {{ opcion }}
         </button>

@@ -94,3 +94,96 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Contenedor que oscurece el fondo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Fondo muy oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Efecto de desenfoque al fondo */
+}
+
+/* La tarjeta del modal */
+.modal-content {
+  background-color: #121212; /* Gris casi negro */
+  padding: 3rem;
+  border-radius: 20px;
+  border: 2px solid #ff3131; /* Borde rojo neón */
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  /* El resplandor exterior e interior */
+  box-shadow: 0 0 20px rgba(255, 49, 49, 0.6), 
+              inset 0 0 10px rgba(255, 49, 49, 0.4);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título ¡PERDISTE! */
+.modal-content h2 {
+  color: #ff3131;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  /* Brillo en el texto */
+  text-shadow: 0 0 10px rgba(255, 49, 49, 0.8);
+}
+
+/* Texto de la ronda */
+.modal-score {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+}
+
+/* Contenedor de botones */
+.modal-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Estilo base para botones del modal */
+.btn-modal {
+  background: transparent;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Botón REINTENTAR (Verde neón) */
+.btn-modal.restart {
+  border: 1.5px solid #00ff41;
+  color: #00ff41;
+}
+
+.btn-modal.restart:hover {
+  background-color: #00ff41;
+  color: #000;
+  box-shadow: 0 0 20px #00ff41;
+}
+
+/* Botón SALIR (Rojo neón) */
+.btn-modal.exit {
+  border: 1.5px solid #ff3131;
+  color: #ff3131;
+}
+
+.btn-modal.exit:hover {
+  background-color: #ff3131;
+  color: white;
+  box-shadow: 0 0 20px #ff3131;
+}

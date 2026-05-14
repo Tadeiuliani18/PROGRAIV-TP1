@@ -31,6 +31,7 @@ export class Foro implements OnInit, OnDestroy {
     try {
       this.huboErrorAlCargar.set(false);
       const historial = await this.foroService.obtenerMensajes();
+      console.log("Mensajes obtenidos:", historial);
       this.mensajes.set(historial || []);
       this.scrollAlFinal();
       

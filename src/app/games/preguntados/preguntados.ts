@@ -1,6 +1,7 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+// 1. Eliminamos la interfaz local porque ya viene del servicio (Evita el error de conflicto)
 import { PreguntadosService, PreguntaFútbol } from '../../services/preguntados.service';
-import { GamesService } from '../../services/games.service'; // Tu servicio de Supabase
+import { GamesService } from '../../services/games.service'; 
 import { AuthService } from '../../services/auth'; 
 import { Router } from '@angular/router';
 
@@ -11,17 +12,16 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class PreguntadosComponent implements OnInit {
-  preguntaActual: PreguntaFútbol | null = null;
+  // 2. CAMBIO: Usamos WritableSignal para poder usar .set() (Resuelve error de Property 'set' does not exist)
+  preguntaActual: WritableSignal<PreguntaFútbol | null> = signal(null);
   puntaje: number = 0;
   mostrarModal = signal(false);
   cargando: boolean = false;
-  
-  // Para el registro de tiempo si lo necesitas
   tiempoInicio: number = 0;
 
   constructor(
     private preguntadosSrv: PreguntadosService,
-    private gamesSrv: GamesService, // Inyectamos Supabase
+    private gamesSrv: GamesService, 
     private auth: AuthService,
     private router: Router
   ) {}
@@ -32,7 +32,7 @@ export class PreguntadosComponent implements OnInit {
 
   async iniciarJuego() {
     this.puntaje = 0;
-    this.tiempoInicio = Date.now(); // Iniciamos cronómetro
+    this.tiempoInicio = Date.now();
     this.mostrarModal.set(false);
     await this.cargarNuevaPregunta();
   }
@@ -40,8 +40,10 @@ export class PreguntadosComponent implements OnInit {
   async cargarNuevaPregunta() {
     this.cargando = true;
     try {
-      this.preguntaActual = await this.preguntadosSrv.generarPregunta();
-      console.log("Pregunta cargada:", this.preguntaActual);
+      const pregunta = await this.preguntadosSrv.generarPregunta();
+      // 3. CORRECCIÓN: Quitamos "PreguntaFútbol(pregunta)" ya que la interfaz no es una función (Resuelve error de 'value here')
+      this.preguntaActual.set(pregunta);
+      console.log("Pregunta cargada:", this.preguntaActual());
     } catch (error) {
       console.error("Error API:", error);
     } finally {
@@ -50,7 +52,9 @@ export class PreguntadosComponent implements OnInit {
   }
 
   async verificarRespuesta(opcion: string) {
-    if (this.preguntaActual && opcion === this.preguntaActual.respuestaCorrecta) {
+    const actual = this.preguntaActual();
+    // 4. CORRECCIÓN: Verificamos que 'actual' no sea null antes de acceder (Resuelve error de 'Object is possibly null')
+    if (actual && opcion === actual.respuestaCorrecta) {
       this.puntaje++;
       await this.cargarNuevaPregunta();
     } else {
@@ -62,23 +66,20 @@ export class PreguntadosComponent implements OnInit {
     this.mostrarModal.set(true);
     
     const user = await this.auth.getUser();
-    // Calculamos el tiempo total en segundos
-    const tiempoTotal = Math.floor((Date.now() - this.tiempoInicio) / 1000);
 
     const resultado = {
-    userId: user?.id || user?.email || null, // Ajusta según tu AuthService
+      userId: user?.id || user?.email || null,
       gameName: 'Preguntados',
       score: this.puntaje,
-      tiempo: tiempoTotal,
+      tiempo: 0,
       fecha: new Date()
     };
 
     try {
-      // Usamos tu método existente de Supabase
       await this.gamesSrv.saveGameResult(resultado);
-      console.log('Resultado guardado en Supabase con éxito');
+      console.log('Resultado guardado con éxito');
     } catch (e) {
-      console.error("Error al guardar en la base de datos:", e);
+      console.error("Error al guardar:", e);
     }
   }
 
