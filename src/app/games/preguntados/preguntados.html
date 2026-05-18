@@ -15,7 +15,6 @@
 
     <h2 class="question-text">¿A qué equipo pertenece este escudo?</h2>
 
-    <!-- Opciones -->
     <div class="options-grid">
       @for (opcion of preguntaActual()!.opciones; track opcion) {
         <button class="option-btn" (click)="verificarRespuesta(opcion)">
@@ -25,7 +24,6 @@
     </div>
   </div>
 
-  <!-- Modal de Game Over (Reutilizando tu lógica) -->
   @if (mostrarModal()) {
     <div class="modal-overlay">
       <div class="modal-content">

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth'; 
 import { GamesService } from '../../services/games.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // <--- 1. Asegúrate de que esté esta importación
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-simon-dice',
@@ -120,7 +120,6 @@ export class SimonDiceComponent implements OnInit, OnDestroy {
   async gameOver() {
     this.mensaje = '¡GAME OVER!';
     
-    // Al fallar, enviamos el resultado a la DB
     await this.saveResult();
     this.estaJugando = false; 
     this.mostrarModal.set(true);
@@ -139,7 +138,7 @@ export class SimonDiceComponent implements OnInit, OnDestroy {
       await this.gamesService.saveGameResult({
         userId: this.user.id,
         gameName: 'SimonDice',
-        tiempo: 0, // Mandamos 0 o podrías omitirlo si tu servicio lo permite
+        tiempo: 0, 
         fecha: new Date(),
         score: this.puntaje 
       });
@@ -150,7 +149,6 @@ export class SimonDiceComponent implements OnInit, OnDestroy {
   }
 
   salir() {
-  // Aquí puedes redirigir a home o lo que necesites
   this.router.navigate(['/home'])
   this.mostrarModal.set(false);
 }

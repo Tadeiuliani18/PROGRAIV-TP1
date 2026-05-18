@@ -41,7 +41,6 @@ export class PreguntadosComponent implements OnInit {
     this.cargando = true;
     try {
       const pregunta = await this.preguntadosSrv.generarPregunta();
-      // 3. CORRECCIÓN: Quitamos "PreguntaFútbol(pregunta)" ya que la interfaz no es una función (Resuelve error de 'value here')
       this.preguntaActual.set(pregunta);
       console.log("Pregunta cargada:", this.preguntaActual());
     } catch (error) {
@@ -53,7 +52,6 @@ export class PreguntadosComponent implements OnInit {
 
   async verificarRespuesta(opcion: string) {
     const actual = this.preguntaActual();
-    // 4. CORRECCIÓN: Verificamos que 'actual' no sea null antes de acceder (Resuelve error de 'Object is possibly null')
     if (actual && opcion === actual.respuestaCorrecta) {
       this.puntaje++;
       await this.cargarNuevaPregunta();
